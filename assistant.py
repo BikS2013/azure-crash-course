@@ -1,10 +1,10 @@
-
 import os
+from typing import Any, List, override
 import openai as oai
 import openai.types.beta as obeta
+import openai.resources.beta as orbeta
+from openai import AzureOpenAI, AssistantEventHandler
 from openai.types.beta.vector_stores.vector_store_file_batch import VectorStoreFileBatch
-from openai import AzureOpenAI
-
 
 class AIClient:
     azure_endpoint: str
@@ -24,7 +24,9 @@ class AIClient:
     
     def get_ai_client(self):
         return self.aiclient
-    
+    def get_id(self):
+        return self.aiclient.id
+
 class VectorStore:
     name: str
     vector_store: obeta.VectorStore
@@ -35,6 +37,9 @@ class VectorStore:
         self.name = name
         self.vector_store = vector_store
 
+    def get_id(self):
+        return self.vector_store.id
+    
     @staticmethod
     def create_vector_store(aiclient: AIClient, name: str):
         vector_store = aiclient.get_ai_client().beta.vector_stores.create(name=name)
@@ -57,6 +62,124 @@ class VectorStore:
         )
         return file_batch
 
+class FileSearchAssistant:
+    name: str
+    instructions: str
+    model: str
+    aiclient: AIClient
+
+    def __init__(self, aiclient: AIClient, name: str, instructions: str, model: str, tools: list):
+        self.aiclient = aiclient
+        self.name = name
+        self.instructions = instructions
+        self.model = model
+        self.tools = tools
+        self.assistant = None
+
+    class EventHandler(AssistantEventHandler):
+        client: AzureOpenAI
+
+        def __init__(self, client:AIClient):
+            super().__init__()
+            self.client = client
+
+        @override
+        def on_text_created(self, text) -> None:
+            print(f"\nassistant > ", end="", flush=True)
+
+        @override
+        def on_tool_call_created(self, tool_call):
+            print(f"\nassistant > {tool_call.type}\n", flush=True)
+
+        @override
+        def on_message_done(self, message) -> None:
+            # print a citation to the file searched
+            message_content = message.content[0].text
+            annotations = message_content.annotations
+            citations = []
+            for index, annotation in enumerate(annotations):
+                message_content.value = message_content.value.replace(
+                    annotation.text, f"[{index}]"
+                )
+                if file_citation := getattr(annotation, "file_citation", None):
+                    if ( self.client is None):
+                        print("EventHandler: Missing Azure Open AI client ")
+                    else:
+                        cited_file = self.client.get_ai_client().files.retrieve(file_citation.file_id)
+                        citations.append(f"[{index}] {cited_file.filename}")
+
+            print(message_content.value)
+            print("\n".join(citations))
+    
+    assistant: Any
+
+    def get_beta(self) -> orbeta.Beta:
+        return self.aiclient.get_ai_client().beta
+    
+    def get_assistant(self):
+        self.assistant = self.get_beta().assistants.create(
+            name=self.name,
+            instructions=self.instructions,
+            model=self.model,
+            tools=self.tools
+        )
+        return self.assistant
+    
+    vector_store_ids: List[str]
+    def set_vector_stores(self, vector_store_ids: List[Any]):
+        self.vector_store_ids = vector_store_ids
+        if self.assistant is None:
+            self.get_assistant()
+        self.assistant = self.get_beta().assistants.update(
+            assistant_id = self.assistant.id,
+            tool_resources={"file_search": {"vector_store_ids": self.vector_store_ids}},
+        )
+
+    def get_thread(self, message: str) -> obeta.Thread:
+        thread = self.get_beta().threads.create(
+            messages=[
+                {
+                "role": "user",
+                "content": message,
+                # Attach the new file to the message.
+                #   "attachments": [
+                #     { "file_id": message_file.id, "tools": [{"type": "file_search"}] }
+                #   ],
+                }
+            ]
+        )
+        return thread
+
+
+
+    def do_it(self, vector_store_ids: List[str] = None, thread:obeta.Thread = None, message :str = None   ):
+        if self.assistant is None: 
+            self.get_assistant()
+
+        if vector_store_ids is not None:
+            self.set_vector_stores(vector_store_ids)
+
+        if thread is None:
+            thread = self.get_thread(message)
+
+        with self.get_beta().threads.runs.stream(
+            thread_id=thread.id,
+            assistant_id=self.assistant.id,
+            #instructions="Please address the user as Jane Doe. The user has a premium account.",
+            event_handler= self.EventHandler(aiclient),
+        ) as stream:
+            stream.until_done()
+
+
+assistant_system_prompt = """
+You are an AI assistant that helps users learn from the information found in the source material.
+Answer the query using only the sources you provided with.
+Use bullets if the answer has multiple points.
+Answer ONLY with the facts listed in the list of sources in your data. 
+If there isn't enough information in the data, say you don't know.
+Do not generate answers that don't use your data.
+You must always answer in Greek and you must always cite your sources.
+""" 
 
 
 document_path = os.path.join(os.path.dirname(__file__), 'sample-documents')
@@ -75,20 +198,46 @@ file_streams = [open(path, "rb") for path in file_paths]
 api_key = os.getenv("AZURE_OPENAI_API_KEY")
 api_version = os.getenv("AZURE_OPENAI_API_VERSION")
 end_point = os.getenv("AZURE_OPENAI_ENDPOINT")
-vector_store_name = "athena_documents"
 vector_store_name = "athena_documents2"
+vector_store_name = "athena_documents"
 
 aiclient = AIClient(azure_endpoint=end_point, api_key=api_key, api_version=api_version)
 #vector_store = client.beta.vector_stores.create(name="athena_documents")
 
 vector_store = VectorStore.get_vector_store(aiclient, vector_store_name)
-vector_store = VectorStore.create_vector_store(aiclient, vector_store_name)
+#vector_store = VectorStore.create_vector_store(aiclient, vector_store_name)
 
 # client = AzureOpenAI( api_key=api_key, api_version=api_version, azure_endpoint=end_point)
 
+assistant = FileSearchAssistant(aiclient, 
+                                name="AthenaAssistant", 
+                                instructions=assistant_system_prompt, 
+                                model="gpt-4o", 
+                                tools=[{"type": "file_search"}])
+
+vector_store_ids = [vector_store.vector_store.id]
+
+assistant.set_vector_stores(vector_store_ids)
+thread = assistant.get_thread("Ποιές είναι οι διαφορές στη διαδικασία έκδοσης χρεωστικών και πιστωτικών καρτών;")
+assistant.do_it( thread=thread) 
+
+# assistant.do_something()
+#             # Create a thread and attach the file to the message
+#             thread = aiclient.get_ai_client().beta.threads.create(
+#                 messages=[
+#                     {
+#                     "role": "user",
+#                     "content": "Ποιές είναι οι διαφορές στη διαδικασία έκδοσης χρεωστικών και πιστωτικών καρτών?",
+#                     # Attach the new file to the message.
+#                     #   "attachments": [
+#                     #     { "file_id": message_file.id, "tools": [{"type": "file_search"}] }
+#                     #   ],
+#                     }
+#                 ]
+#             )
 
 
-
+exit()
 
 if vector_store is not None:
 
