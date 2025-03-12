@@ -117,6 +117,7 @@ class FileSearchAssistant:
         return self.aiclient.get_ai_client().beta
     
     def get_assistant(self):
+        self.get_beta().assistants.list()
         self.assistant = self.get_beta().assistants.create(
             name=self.name,
             instructions=self.instructions,
