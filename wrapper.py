@@ -429,18 +429,21 @@ if __name__ == "__main__":
     azure_openai_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
     azure_embedding_model = os.getenv("AZURE_EMBEDDING_MODEL")
 
+    identity = Identity(tenant_id, subscription_id, client_id, client_secret)
+    subscription = identity.get_subscription(subscription_id=subscription_id)
+    resource_group = subscription.get_resource_group(group_name)
+
+    
+
 
     query = "Ποιές είναι οι διαφορές στη διαδικασία έκδοσης χρεωστικών και πιστωτικών καρτών;"
     openai_client = get_embedding_client(azure_openai_api_key, api_base=azure_openai_endpoint, api_version=azure_api_version )
     query_embedding = generate_embeddings(query, openai_client, model=azure_embedding_model)
 
 
-    identity = Identity(tenant_id, subscription_id, client_id, client_secret)
-    subscription = identity.get_subscription(subscription_id=subscription_id)
     storage_accounts = subscription.get_storage_accounts()
 
 
-    resource_group = subscription.get_resource_group(group_name)
     storage_account = resource_group.get_storage_account(storage_account_name)
 
     create_result = resource_group.create_storage_account(storage_account_name + "a1", location)

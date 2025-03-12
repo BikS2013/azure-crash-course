@@ -14,5 +14,6 @@ wheels/
 .DS_Store
 **/.DS_Store
 
+sample-documents/**
 
 working_instructions.md
