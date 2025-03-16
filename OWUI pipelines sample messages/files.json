@@ -1,0 +1,31 @@
+[
+    {
+        "type": "file",
+        "file": {
+            "id": "d23c24d7-f513-48d6-b281-5823fe8eb893",
+            "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+            "hash": "891a117d8cc4b603234f3984c9bd10fd5062ce90699ec84abb4761877d26e8c0",
+            "filename": "athena_agent_pipeline.py",
+            "data": {
+                "content": "import azure_agent_pipeline as aap\nfrom pathlib import Path\nfrom typing import List, Union, Generator, Iterator\nimport uuid\n\nfrom pydantic import BaseModel\n\nimport os, time\nfrom azure.identity import ClientSecretCredential\nfrom azure.ai.projects import AIProjectClient\n\nclass Pipeline(aap.Pipeline):\n    def __init__(self):\n        super().__init__()\n        self.name = "Legal Cases Agent"\n        \n"
+            },
+            "meta": {
+                "name": "athena_agent_pipeline.py",
+                "content_type": "text/x-python-script",
+                "size": 400,
+                "data": {},
+                "collection_name": "file-d23c24d7-f513-48d6-b281-5823fe8eb893"
+            },
+            "created_at": 1742055086,
+            "updated_at": 1742055086
+        },
+        "id": "d23c24d7-f513-48d6-b281-5823fe8eb893",
+        "url": "/api/v1/files/d23c24d7-f513-48d6-b281-5823fe8eb893",
+        "name": "athena_agent_pipeline.py",
+        "collection_name": "file-d23c24d7-f513-48d6-b281-5823fe8eb893",
+        "status": "uploaded",
+        "size": 400,
+        "error": "",
+        "itemId": "d91858de-dd44-4084-a110-7a6189365993"
+    }
+]

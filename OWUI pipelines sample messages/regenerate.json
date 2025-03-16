@@ -1,0 +1,770 @@
+2025-03-15 19: 37: 47 INFO: 192.168.65.1: 22482 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 19: 37: 47 INFO: 192.168.65.1: 22644 - "GET /models HTTP/1.1"200 OK
+2025-03-15 19: 37: 47 azure_agent_pipeline
+2025-03-15 19: 37: 47 azure_agent_pipeline
+2025-03-15 19: 37: 47 INFO: 192.168.65.1: 56916 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 19: 37: 52 pipe:azure_agent_pipeline running
+2025-03-15 19: 37: 52 BODY: {
+    "stream": True,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462",
+        "message_id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+        "session_id": "CfR7eAam5xAMjZa_AAAZ",
+        "tool_ids": None,
+        "files": None,
+        "features": {
+            "image_generation": False,
+            "code_interpreter": False,
+            "web_search": False
+        },
+        "variables": {
+            "{{USER_NAME}}": "George Marinos",
+            "{{USER_LOCATION}}": "Unknown",
+            "{{CURRENT_DATETIME}}": "2025-03-15 19:37:47",
+            "{{CURRENT_DATE}}": "2025-03-15",
+            "{{CURRENT_TIME}}": "19:37:47",
+            "{{CURRENT_WEEKDAY}}": "Saturday",
+            "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+            "{{USER_LANGUAGE}}": "en-US"
+        },
+        "model": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742060150,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            },
+            "openai": {
+                "id": "azure_agent_pipeline",
+                "name": "Athena Agent",
+                "object": "model",
+                "created": 1742060150,
+                "owned_by": "openai",
+                "pipeline": {
+                    "type": "pipe",
+                    "valves": True
+                }
+            },
+            "urlIdx": 1,
+            "actions": []
+        },
+        "direct": False
+    }
+}
+2025-03-15 19: 37: 52 MESSAGES: [
+    {
+        "role": "user",
+        "content": "ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?"
+    }
+]
+2025-03-15 19: 37: 52 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 19: 37: 52 METADATA:  ====================
+2025-03-15 19: 37: 52 METADATA: {
+    "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462",
+    "message_id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+    "session_id": "CfR7eAam5xAMjZa_AAAZ",
+    "tool_ids": None,
+    "files": None,
+    "features": {
+        "image_generation": False,
+        "code_interpreter": False,
+        "web_search": False
+    },
+    "variables": {
+        "{{USER_NAME}}": "George Marinos",
+        "{{USER_LOCATION}}": "Unknown",
+        "{{CURRENT_DATETIME}}": "2025-03-15 19:37:47",
+        "{{CURRENT_DATE}}": "2025-03-15",
+        "{{CURRENT_TIME}}": "19:37:47",
+        "{{CURRENT_WEEKDAY}}": "Saturday",
+        "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+        "{{USER_LANGUAGE}}": "en-US"
+    },
+    "model": {
+        "id": "azure_agent_pipeline",
+        "name": "Athena Agent",
+        "object": "model",
+        "created": 1742060150,
+        "owned_by": "openai",
+        "pipeline": {
+            "type": "pipe",
+            "valves": True
+        },
+        "openai": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742060150,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            }
+        },
+        "urlIdx": 1,
+        "actions": []
+    },
+    "direct": False
+}
+2025-03-15 19: 37: 52 USER_ID: 8e3423df-a803-457a-aafa-10cc79c4a3ed, CHAT_ID: eef52ad6-f8e2-4c20-8dfa-acfdea1a1462
+2025-03-15 19: 37: 52 USER_MESSAGE:  ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?
+2025-03-15 19: 37: 52 Using existing thread, thread ID: thread_0aBqqGa9MULNKbZGpcR7c5E3
+2025-03-15 19: 37: 52 Created message, message ID: msg_C5m3rVhtEjBuCUOXfYDi0QYP
+2025-03-15 19: 37: 52 Run finished with status: RunStatus.COMPLETED
+2025-03-15 19: 37: 52 Messages: {
+    "object": "list",
+    "data": [
+        {
+            "id": "msg_D3W2xfD8zo81JzHKv9aP0N7L",
+            "object": "thread.message",
+            "created_at": 1742060269,
+            "assistant_id": "asst_31PXRzUQe6Oko4qPoU6L4XHM",
+            "thread_id": "thread_0aBqqGa9MULNKbZGpcR7c5E3",
+            "run_id": "run_svk107HxvXpVbFG53WFliYBf",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.",
+                        "annotations": [
+                            {
+                                "type": "url_citation",
+                                "text": "【3:0†source】",
+                                "start_index": 470,
+                                "end_index": 482,
+                                "url_citation": {
+                                    "url": "J514_001_2023-ΕΚΤΑΜΙΕΥΣΗ ΚΑΤΑΝΑΛΩΤΙΚΟΥ ΔΑΝΕΙΟΥ_WF.docx",
+                                    "title": "J514_001_2023-ΕΚΤΑΜΙΕΥΣΗ ΚΑΤΑΝΑΛΩΤΙΚΟΥ ΔΑΝΕΙΟΥ_WF.docx"
+                                }
+                            },
+                            {
+                                "type": "url_citation",
+                                "text": "【3:3†source】",
+                                "start_index": 482,
+                                "end_index": 494,
+                                "url_citation": {
+                                    "url": "J494_001_2023-Διερεύνηση Αναγκών Πελάτη_WF.docx",
+                                    "title": "J494_001_2023-Διερεύνηση Αναγκών Πελάτη_WF.docx"
+                                }
+                            },
+                            {
+                                "type": "url_citation",
+                                "text": "【3:4†source】",
+                                "start_index": 494,
+                                "end_index": 506,
+                                "url_citation": {
+                                    "url": "J523_001_2023-ΥΠΟΓΡΑΦΗ ΤΡΟΠΟΠΟΙΗΤΙΚΗΣ ΣΥΜΒΑΣΗΣ ΚΑΙ ΥΛΟΠΟΙΗΣΗ ΜΕΤΑΒΟΛΗΣ ΔΙΑΡΚΕΙΑΣ ΚΑΤΑΝΑΛΩΤΙΚΟΥ ΔΑΝΕΙΟΥ_WF.docx",
+                                    "title": "J523_001_2023-ΥΠΟΓΡΑΦΗ ΤΡΟΠΟΠΟΙΗΤΙΚΗΣ ΣΥΜΒΑΣΗΣ ΚΑΙ ΥΛΟΠΟΙΗΣΗ ΜΕΤΑΒΟΛΗΣ ΔΙΑΡΚΕΙΑΣ ΚΑΤΑΝΑΛΩΤΙΚΟΥ ΔΑΝΕΙΟΥ_WF.docx"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_C5m3rVhtEjBuCUOXfYDi0QYP",
+            "object": "thread.message",
+            "created_at": 1742060268,
+            "assistant_id": None,
+            "thread_id": "thread_0aBqqGa9MULNKbZGpcR7c5E3",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_oBuj0Q1OGw3whviS3Vb0IGEk",
+            "object": "thread.message",
+            "created_at": 1742060241,
+            "assistant_id": "asst_31PXRzUQe6Oko4qPoU6L4XHM",
+            "thread_id": "thread_0aBqqGa9MULNKbZGpcR7c5E3",
+            "run_id": "run_nrFUZLWrW9kj3HTdZPUNNceB",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.",
+                        "annotations": [
+                            {
+                                "type": "url_citation",
+                                "text": "【3:0†source】",
+                                "start_index": 470,
+                                "end_index": 482,
+                                "url_citation": {
+                                    "url": "J514_001_2023-ΕΚΤΑΜΙΕΥΣΗ ΚΑΤΑΝΑΛΩΤΙΚΟΥ ΔΑΝΕΙΟΥ_WF.docx",
+                                    "title": "J514_001_2023-ΕΚΤΑΜΙΕΥΣΗ ΚΑΤΑΝΑΛΩΤΙΚΟΥ ΔΑΝΕΙΟΥ_WF.docx"
+                                }
+                            },
+                            {
+                                "type": "url_citation",
+                                "text": "【3:3†source】",
+                                "start_index": 482,
+                                "end_index": 494,
+                                "url_citation": {
+                                    "url": "J494_001_2023-Διερεύνηση Αναγκών Πελάτη_WF.docx",
+                                    "title": "J494_001_2023-Διερεύνηση Αναγκών Πελάτη_WF.docx"
+                                }
+                            },
+                            {
+                                "type": "url_citation",
+                                "text": "【3:4†source】",
+                                "start_index": 494,
+                                "end_index": 506,
+                                "url_citation": {
+                                    "url": "J523_001_2023-ΥΠΟΓΡΑΦΗ ΤΡΟΠΟΠΟΙΗΤΙΚΗΣ ΣΥΜΒΑΣΗΣ ΚΑΙ ΥΛΟΠΟΙΗΣΗ ΜΕΤΑΒΟΛΗΣ ΔΙΑΡΚΕΙΑΣ ΚΑΤΑΝΑΛΩΤΙΚΟΥ ΔΑΝΕΙΟΥ_WF.docx",
+                                    "title": "J523_001_2023-ΥΠΟΓΡΑΦΗ ΤΡΟΠΟΠΟΙΗΤΙΚΗΣ ΣΥΜΒΑΣΗΣ ΚΑΙ ΥΛΟΠΟΙΗΣΗ ΜΕΤΑΒΟΛΗΣ ΔΙΑΡΚΕΙΑΣ ΚΑΤΑΝΑΛΩΤΙΚΟΥ ΔΑΝΕΙΟΥ_WF.docx"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_FdR2FMkJ56HmycqcNW0qlBn9",
+            "object": "thread.message",
+            "created_at": 1742060238,
+            "assistant_id": None,
+            "thread_id": "thread_0aBqqGa9MULNKbZGpcR7c5E3",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        }
+    ],
+    "first_id": "msg_D3W2xfD8zo81JzHKv9aP0N7L",
+    "last_id": "msg_FdR2FMkJ56HmycqcNW0qlBn9",
+    "has_more": False
+}
+2025-03-15 19: 37: 52 Last Message: Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν: 2025-03-15 19: 37: 52 
+2025-03-15 19: 37: 52 - Ατομικά Δάνεια Συνταξιούχων ΕΤΕ
+2025-03-15 19: 37: 52 - Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)
+2025-03-15 19: 37: 52 - Προσωπικά - Καταναλωτικά Δάνεια: 2025-03-15 19: 37: 52   - Ανταπόδοση
+2025-03-15 19: 37: 52   - ΕΞΠΡΕΣ
+2025-03-15 19: 37: 52   - ΕΞΠΡΕΣ Cross Selling
+2025-03-15 19: 37: 52   - Σπουδάζω
+2025-03-15 19: 37: 52   - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων
+2025-03-15 19: 37: 52 - Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)
+2025-03-15 19: 37: 52 - Μέσω Εμπόρων
+2025-03-15 19: 37: 52 - Ανακυκλούμενη Πίστωση (Overdraft)
+2025-03-15 19: 37: 52 - Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3: 0†source】【3: 3†source】【3: 4†source】.
+2025-03-15 19: 37: 52 INFO: 192.168.65.1: 29362 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 19: 37: 52 INFO: 192.168.65.1: 61350 - "GET /models HTTP/1.1"200 OK
+2025-03-15 19: 37: 52 INFO: 192.168.65.1: 24565 - "POST /azure_agent_pipeline/filter/outlet HTTP/1.1"200 OK
+2025-03-15 19: 37: 52 azure_agent_pipeline
+2025-03-15 19: 37: 52 azure_agent_pipeline
+2025-03-15 19: 37: 52 pipe:azure_agent_pipeline running
+2025-03-15 19: 37: 52 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nGenerate a concise, 3-5 word title with an emoji summarizing the chat history.\n### Guidelines:\n- The title should clearly represent the main theme or subject of the conversation.\n- Use emojis that enhance understanding of the topic, but avoid quotation marks or special formatting.\n- Write the title in the chat\"s primary language; default to English if multilingual.\n- Prioritize accuracy over excessive creativity; keep it clear and simple.\n### Output:\nJSON format: { "title": "your concise title here" }\n### Examples:\n- { "title": "📉 Stock Market Trends" },\n- { "title": "🍪 Perfect Chocolate Chip Recipe" },\n- { "title": "Evolution of Music Streaming" },\n- { "title": "Remote Work Productivity Tips" },\n- { "title": "Artificial Intelligence in Healthcare" },\n- { "title": "🎮 Video Game Development Insights" }\n### Chat History:\n<chat_history>\nUSER: ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?\nASSISTANT: Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.\n</chat_history>"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462",
+        "message_id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+        "session_id": "CfR7eAam5xAMjZa_AAAZ",
+        "tool_ids": None,
+        "files": None,
+        "features": {
+            "image_generation": False,
+            "code_interpreter": False,
+            "web_search": False
+        },
+        "variables": {
+            "{{USER_NAME}}": "George Marinos",
+            "{{USER_LOCATION}}": "Unknown",
+            "{{CURRENT_DATETIME}}": "2025-03-15 19:37:47",
+            "{{CURRENT_DATE}}": "2025-03-15",
+            "{{CURRENT_TIME}}": "19:37:47",
+            "{{CURRENT_WEEKDAY}}": "Saturday",
+            "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+            "{{USER_LANGUAGE}}": "en-US"
+        },
+        "model": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742060150,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            },
+            "openai": {
+                "id": "azure_agent_pipeline",
+                "name": "Athena Agent",
+                "object": "model",
+                "created": 1742060150,
+                "owned_by": "openai",
+                "pipeline": {
+                    "type": "pipe",
+                    "valves": True
+                }
+            },
+            "urlIdx": 1,
+            "actions": []
+        },
+        "direct": False,
+        "task": "title_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "messages": [
+                {
+                    "id": "cbbdd284-c7fe-4f3e-8a4b-46b2d8d0de54",
+                    "parentId": None,
+                    "childrenIds": [
+                        "b629c48c-826c-4901-be1b-86f4a775bc9f",
+                        "d1d09107-d1fd-4a1a-abe6-28d58d71363b"
+                    ],
+                    "role": "user",
+                    "content": "ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?",
+                    "models": [
+                        "azure_agent_pipeline"
+                    ],
+                    "timestamp": 1742060235
+                },
+                {
+                    "parentId": "cbbdd284-c7fe-4f3e-8a4b-46b2d8d0de54",
+                    "id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+                    "childrenIds": [],
+                    "role": "assistant",
+                    "content": "Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.",
+                    "model": "azure_agent_pipeline",
+                    "modelName": "Athena Agent",
+                    "modelIdx": 0,
+                    "userContext": None,
+                    "timestamp": 1742060267
+                }
+            ],
+            "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462"
+        }
+    },
+    "max_tokens": 1000
+}
+2025-03-15 19: 37: 52 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nGenerate a concise, 3-5 word title with an emoji summarizing the chat history.\n### Guidelines:\n- The title should clearly represent the main theme or subject of the conversation.\n- Use emojis that enhance understanding of the topic, but avoid quotation marks or special formatting.\n- Write the title in the chat\"s primary language; default to English if multilingual.\n- Prioritize accuracy over excessive creativity; keep it clear and simple.\n### Output:\nJSON format: { "title": "your concise title here" }\n### Examples:\n- { "title": "📉 Stock Market Trends" },\n- { "title": "🍪 Perfect Chocolate Chip Recipe" },\n- { "title": "Evolution of Music Streaming" },\n- { "title": "Remote Work Productivity Tips" },\n- { "title": "Artificial Intelligence in Healthcare" },\n- { "title": "🎮 Video Game Development Insights" }\n### Chat History:\n<chat_history>\nUSER: ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?\nASSISTANT: Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.\n</chat_history>"
+    }
+]
+2025-03-15 19: 37: 52 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 19: 37: 52 METADATA:  ====================
+2025-03-15 19: 37: 52 METADATA: {
+    "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462",
+    "message_id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+    "session_id": "CfR7eAam5xAMjZa_AAAZ",
+    "tool_ids": None,
+    "files": None,
+    "features": {
+        "image_generation": False,
+        "code_interpreter": False,
+        "web_search": False
+    },
+    "variables": {
+        "{{USER_NAME}}": "George Marinos",
+        "{{USER_LOCATION}}": "Unknown",
+        "{{CURRENT_DATETIME}}": "2025-03-15 19:37:47",
+        "{{CURRENT_DATE}}": "2025-03-15",
+        "{{CURRENT_TIME}}": "19:37:47",
+        "{{CURRENT_WEEKDAY}}": "Saturday",
+        "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+        "{{USER_LANGUAGE}}": "en-US"
+    },
+    "model": {
+        "id": "azure_agent_pipeline",
+        "name": "Athena Agent",
+        "object": "model",
+        "created": 1742060150,
+        "owned_by": "openai",
+        "pipeline": {
+            "type": "pipe",
+            "valves": True
+        },
+        "openai": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742060150,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            }
+        },
+        "urlIdx": 1,
+        "actions": []
+    },
+    "direct": False,
+    "task": "title_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "messages": [
+            {
+                "id": "cbbdd284-c7fe-4f3e-8a4b-46b2d8d0de54",
+                "parentId": None,
+                "childrenIds": [
+                    "b629c48c-826c-4901-be1b-86f4a775bc9f",
+                    "d1d09107-d1fd-4a1a-abe6-28d58d71363b"
+                ],
+                "role": "user",
+                "content": "ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?",
+                "models": [
+                    "azure_agent_pipeline"
+                ],
+                "timestamp": 1742060235
+            },
+            {
+                "parentId": "cbbdd284-c7fe-4f3e-8a4b-46b2d8d0de54",
+                "id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742060267
+            }
+        ],
+        "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462"
+    }
+}
+2025-03-15 19: 37: 52 USER_ID: 8e3423df-a803-457a-aafa-10cc79c4a3ed, CHAT_ID: eef52ad6-f8e2-4c20-8dfa-acfdea1a1462
+2025-03-15 19: 37: 52 USER_MESSAGE:  ### Task: 2025-03-15 19: 37: 52 Generate a concise,
+3-5 word title with an emoji summarizing the chat history.
+2025-03-15 19: 37: 52 ### Guidelines: 2025-03-15 19: 37: 52 - The title should clearly represent the main theme or subject of the conversation.
+2025-03-15 19: 37: 52 - Use emojis that enhance understanding of the topic, but avoid quotation marks or special formatting.
+2025-03-15 19: 37: 52 - Write the title in the chat's primary language; default to English if multilingual.
+2025-03-15 19: 37: 52 - Prioritize accuracy over excessive creativity; keep it clear and simple.
+2025-03-15 19: 37: 52 ### Output: 2025-03-15 19: 37: 52 JSON format: {
+    "title": "your concise title here"
+}
+2025-03-15 19: 37: 52 ### Examples: 2025-03-15 19: 37: 52 - {
+    "title": "📉 Stock Market Trends"
+},
+2025-03-15 19: 37: 52 - {
+    "title": "🍪 Perfect Chocolate Chip Recipe"
+},
+2025-03-15 19: 37: 52 - {
+    "title": "Evolution of Music Streaming"
+},
+2025-03-15 19: 37: 52 - {
+    "title": "Remote Work Productivity Tips"
+},
+2025-03-15 19: 37: 52 - {
+    "title": "Artificial Intelligence in Healthcare"
+},
+2025-03-15 19: 37: 52 - {
+    "title": "🎮 Video Game Development Insights"
+}
+2025-03-15 19: 37: 52 ### Chat History: 2025-03-15 19: 37: 52 <chat_history>
+2025-03-15 19: 37: 52 USER: ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?
+2025-03-15 19: 37: 52 ASSISTANT: Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν: 2025-03-15 19: 37: 52 
+2025-03-15 19: 37: 52 - Ατομικά Δάνεια Συνταξιούχων ΕΤΕ
+2025-03-15 19: 37: 52 - Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)
+2025-03-15 19: 37: 52 - Προσωπικά - Καταναλωτικά Δάνεια: 2025-03-15 19: 37: 52   - Ανταπόδοση
+2025-03-15 19: 37: 52   - ΕΞΠΡΕΣ
+2025-03-15 19: 37: 52   - ΕΞΠΡΕΣ Cross Selling
+2025-03-15 19: 37: 52   - Σπουδάζω
+2025-03-15 19: 37: 52   - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων
+2025-03-15 19: 37: 52 - Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)
+2025-03-15 19: 37: 52 - Μέσω Εμπόρων
+2025-03-15 19: 37: 52 - Ανακυκλούμενη Πίστωση (Overdraft)
+2025-03-15 19: 37: 52 - Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3: 0†source】【3: 3†source】【3: 4†source】.
+2025-03-15 19: 37: 52 </chat_history>
+2025-03-15 19: 37: 52 INFO: 192.168.65.1: 39004 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 19: 37: 52 INFO: 192.168.65.1: 59044 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 19: 37: 52 azure_agent_pipeline
+2025-03-15 19: 37: 52 azure_agent_pipeline
+2025-03-15 19: 37: 52 pipe:azure_agent_pipeline running
+2025-03-15 19: 37: 52 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nGenerate 1-3 broad tags categorizing the main themes of the chat history, along with 1-3 more specific subtopic tags.\n\n### Guidelines:\n- Start with high-level domains (e.g. Science, Technology, Philosophy, Arts, Politics, Business, Health, Sports, Entertainment, Education)\n- Consider including relevant subfields/subdomains if they are strongly represented throughout the conversation\n- If content is too short (less than 3 messages) or too diverse, use only ["General"]\n- Use the chat\"s primary language; default to English if multilingual\n- Prioritize accuracy over specificity\n\n### Output:\nJSON format: { "tags": ["tag1", "tag2", "tag3"] }\n\n### Chat History:\n<chat_history>\nUSER: ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?\nASSISTANT: Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.\n</chat_history>"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462",
+        "message_id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+        "session_id": "CfR7eAam5xAMjZa_AAAZ",
+        "tool_ids": None,
+        "files": None,
+        "features": {
+            "image_generation": False,
+            "code_interpreter": False,
+            "web_search": False
+        },
+        "variables": {
+            "{{USER_NAME}}": "George Marinos",
+            "{{USER_LOCATION}}": "Unknown",
+            "{{CURRENT_DATETIME}}": "2025-03-15 19:37:47",
+            "{{CURRENT_DATE}}": "2025-03-15",
+            "{{CURRENT_TIME}}": "19:37:47",
+            "{{CURRENT_WEEKDAY}}": "Saturday",
+            "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+            "{{USER_LANGUAGE}}": "en-US"
+        },
+        "model": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742060150,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            },
+            "openai": {
+                "id": "azure_agent_pipeline",
+                "name": "Athena Agent",
+                "object": "model",
+                "created": 1742060150,
+                "owned_by": "openai",
+                "pipeline": {
+                    "type": "pipe",
+                    "valves": True
+                }
+            },
+            "urlIdx": 1,
+            "actions": []
+        },
+        "direct": False,
+        "task": "tags_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "messages": [
+                {
+                    "id": "cbbdd284-c7fe-4f3e-8a4b-46b2d8d0de54",
+                    "parentId": None,
+                    "childrenIds": [
+                        "b629c48c-826c-4901-be1b-86f4a775bc9f",
+                        "d1d09107-d1fd-4a1a-abe6-28d58d71363b"
+                    ],
+                    "role": "user",
+                    "content": "ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?",
+                    "models": [
+                        "azure_agent_pipeline"
+                    ],
+                    "timestamp": 1742060235
+                },
+                {
+                    "parentId": "cbbdd284-c7fe-4f3e-8a4b-46b2d8d0de54",
+                    "id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+                    "childrenIds": [],
+                    "role": "assistant",
+                    "content": "Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.",
+                    "model": "azure_agent_pipeline",
+                    "modelName": "Athena Agent",
+                    "modelIdx": 0,
+                    "userContext": None,
+                    "timestamp": 1742060267
+                }
+            ],
+            "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462"
+        }
+    }
+}
+2025-03-15 19: 37: 52 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nGenerate 1-3 broad tags categorizing the main themes of the chat history, along with 1-3 more specific subtopic tags.\n\n### Guidelines:\n- Start with high-level domains (e.g. Science, Technology, Philosophy, Arts, Politics, Business, Health, Sports, Entertainment, Education)\n- Consider including relevant subfields/subdomains if they are strongly represented throughout the conversation\n- If content is too short (less than 3 messages) or too diverse, use only ["General"]\n- Use the chat\"s primary language; default to English if multilingual\n- Prioritize accuracy over specificity\n\n### Output:\nJSON format: { "tags": ["tag1", "tag2", "tag3"] }\n\n### Chat History:\n<chat_history>\nUSER: ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?\nASSISTANT: Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.\n</chat_history>"
+    }
+]
+2025-03-15 19: 37: 52 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 19: 37: 52 METADATA:  ====================
+2025-03-15 19: 37: 52 METADATA: {
+    "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462",
+    "message_id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+    "session_id": "CfR7eAam5xAMjZa_AAAZ",
+    "tool_ids": None,
+    "files": None,
+    "features": {
+        "image_generation": False,
+        "code_interpreter": False,
+        "web_search": False
+    },
+    "variables": {
+        "{{USER_NAME}}": "George Marinos",
+        "{{USER_LOCATION}}": "Unknown",
+        "{{CURRENT_DATETIME}}": "2025-03-15 19:37:47",
+        "{{CURRENT_DATE}}": "2025-03-15",
+        "{{CURRENT_TIME}}": "19:37:47",
+        "{{CURRENT_WEEKDAY}}": "Saturday",
+        "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+        "{{USER_LANGUAGE}}": "en-US"
+    },
+    "model": {
+        "id": "azure_agent_pipeline",
+        "name": "Athena Agent",
+        "object": "model",
+        "created": 1742060150,
+        "owned_by": "openai",
+        "pipeline": {
+            "type": "pipe",
+            "valves": True
+        },
+        "openai": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742060150,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            }
+        },
+        "urlIdx": 1,
+        "actions": []
+    },
+    "direct": False,
+    "task": "tags_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "messages": [
+            {
+                "id": "cbbdd284-c7fe-4f3e-8a4b-46b2d8d0de54",
+                "parentId": None,
+                "childrenIds": [
+                    "b629c48c-826c-4901-be1b-86f4a775bc9f",
+                    "d1d09107-d1fd-4a1a-abe6-28d58d71363b"
+                ],
+                "role": "user",
+                "content": "ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?",
+                "models": [
+                    "azure_agent_pipeline"
+                ],
+                "timestamp": 1742060235
+            },
+            {
+                "parentId": "cbbdd284-c7fe-4f3e-8a4b-46b2d8d0de54",
+                "id": "d1d09107-d1fd-4a1a-abe6-28d58d71363b",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν:\n\n- Ατομικά Δάνεια Συνταξιούχων ΕΤΕ\n- Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)\n- Προσωπικά - Καταναλωτικά Δάνεια:\n  - Ανταπόδοση\n  - ΕΞΠΡΕΣ\n  - ΕΞΠΡΕΣ Cross Selling\n  - Σπουδάζω\n  - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων\n- Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)\n- Μέσω Εμπόρων\n- Ανακυκλούμενη Πίστωση (Overdraft)\n- Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3:0†source】【3:3†source】【3:4†source】.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742060267
+            }
+        ],
+        "chat_id": "eef52ad6-f8e2-4c20-8dfa-acfdea1a1462"
+    }
+}
+2025-03-15 19: 37: 52 USER_ID: 8e3423df-a803-457a-aafa-10cc79c4a3ed, CHAT_ID: eef52ad6-f8e2-4c20-8dfa-acfdea1a1462
+2025-03-15 19: 37: 52 USER_MESSAGE:  ### Task: 2025-03-15 19: 37: 52 Generate 1-3 broad tags categorizing the main themes of the chat history, along with 1-3 more specific subtopic tags.
+2025-03-15 19: 37: 52 
+2025-03-15 19: 37: 52 ### Guidelines: 2025-03-15 19: 37: 52 - Start with high-level domains (e.g. Science, Technology, Philosophy, Arts, Politics, Business, Health, Sports, Entertainment, Education)
+2025-03-15 19: 37: 52 - Consider including relevant subfields/subdomains if they are strongly represented throughout the conversation
+2025-03-15 19: 37: 52 - If content is too short (less than 3 messages) or too diverse, use only [
+    "General"
+]
+2025-03-15 19: 37: 52 - Use the chat's primary language; default to English if multilingual
+2025-03-15 19: 37: 52 - Prioritize accuracy over specificity
+2025-03-15 19: 37: 52 
+2025-03-15 19: 37: 52 ### Output: 2025-03-15 19: 37: 52 JSON format: {
+    "tags": [
+        "tag1",
+        "tag2",
+        "tag3"
+    ]
+}
+2025-03-15 19: 37: 52 
+2025-03-15 19: 37: 52 ### Chat History: 2025-03-15 19: 37: 52 <chat_history>
+2025-03-15 19: 37: 52 USER: ποιά είναι τα καταναλωτικά δανειακά προϊόντα της Τράπεζας ?
+2025-03-15 19: 37: 52 ASSISTANT: Τα καταναλωτικά δανειακά προϊόντα της Τράπεζας περιλαμβάνουν: 2025-03-15 19: 37: 52 
+2025-03-15 19: 37: 52 - Ατομικά Δάνεια Συνταξιούχων ΕΤΕ
+2025-03-15 19: 37: 52 - Οικολογικές Λύσεις (Εξοικονομώ 2021, Πράσινο Δάνειο)
+2025-03-15 19: 37: 52 - Προσωπικά - Καταναλωτικά Δάνεια: 2025-03-15 19: 37: 52   - Ανταπόδοση
+2025-03-15 19: 37: 52   - ΕΞΠΡΕΣ
+2025-03-15 19: 37: 52   - ΕΞΠΡΕΣ Cross Selling
+2025-03-15 19: 37: 52   - Σπουδάζω
+2025-03-15 19: 37: 52   - Προσωπικό με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων
+2025-03-15 19: 37: 52 - Διευκόλυνση Ενήμερων Οφειλών (ΑΡΣΗ ΒΑΡΩΝ)
+2025-03-15 19: 37: 52 - Μέσω Εμπόρων
+2025-03-15 19: 37: 52 - Ανακυκλούμενη Πίστωση (Overdraft)
+2025-03-15 19: 37: 52 - Αγροτικός Τομέας (Overdraft Αγροτικές Ενισχύσεις - Κάρτα του Αγρότη)【3: 0†source】【3: 3†source】【3: 4†source】.
+2025-03-15 19: 37: 52 </chat_history>
+2025-03-15 19: 37: 52 INFO: 192.168.65.1: 35560 - "POST /chat/completions HTTP/1.1"200 OK

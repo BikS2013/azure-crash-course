@@ -1,0 +1,10 @@
+2025-03-16 12:23:31,282 - AzureSearchManager - ERROR - Error initializing AzureSearchManager: AzureSearch.__init__() missing 1 required positional argument: 'embedding_function'
+2025-03-16 12:24:52,727 - AzureSearchManager - ERROR - Error initializing AzureSearchManager: 'NoneType' object is not callable
+2025-03-16 20:38:26,276 - AzureSearchManager - ERROR - Error initializing AzureSearchManager: (InvalidRequestParameter) Unknown field 'content' in highlight list.
+Parameter name: highlight
+Code: InvalidRequestParameter
+Message: Unknown field 'content' in highlight list.
+Parameter name: highlight
+Exception Details:	(UnknownField) Unknown field 'content' in highlight list.
+	Code: UnknownField
+	Message: Unknown field 'content' in highlight list.

@@ -1,0 +1,2254 @@
+Starting from new chat ========================================================================================================
+
+2025-03-15 18: 38: 14 INFO: 192.168.65.1: 40982 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 38: 14 INFO: 192.168.65.1: 63287 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 38: 14 azure_agent_pipeline
+2025-03-15 18: 38: 14 azure_agent_pipeline
+2025-03-15 18: 38: 14 pipe:azure_agent_pipeline running
+2025-03-15 18: 38: 14 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά </text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά ",
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 38: 14 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά </text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 38: 14 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 38: 14 METADATA:  ====================
+2025-03-15 18: 38: 14 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά ",
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 38: 14 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 38: 14 USER_MESSAGE:  ### Task: 2025-03-15 18: 38: 14 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 38: 14 
+2025-03-15 18: 38: 14 ### **Instructions**: 2025-03-15 18: 38: 14 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 38: 14 2. Use `<type>` to guide your output: 2025-03-15 18: 38: 14    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 38: 14    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 38: 14 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 38: 14 4. Ensure the continuation: 2025-03-15 18: 38: 14    - Flows naturally from `<text>`.  
+2025-03-15 18: 38: 14    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 38: 14 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 38: 14 
+2025-03-15 18: 38: 14 ### **Output Rules**: 2025-03-15 18: 38: 14 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 38: 14 
+2025-03-15 18: 38: 14 ### **Examples**: 2025-03-15 18: 38: 14 #### Example 1: 2025-03-15 18: 38: 14 Input: 2025-03-15 18: 38: 14 <type>General</type>  
+2025-03-15 18: 38: 14 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 38: 14 Output: 2025-03-15 18: 38: 14 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 38: 14 
+2025-03-15 18: 38: 14 #### Example 2: 2025-03-15 18: 38: 14 Input: 2025-03-15 18: 38: 14 <type>Search Query</type>  
+2025-03-15 18: 38: 14 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 38: 14 Output: 2025-03-15 18: 38: 14 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 38: 14 
+2025-03-15 18: 38: 14 ---
+2025-03-15 18: 38: 14 ### Context: 2025-03-15 18: 38: 14 <chat_history>
+2025-03-15 18: 38: 14 
+2025-03-15 18: 38: 14 </chat_history>
+2025-03-15 18: 38: 14 <type>search query</type>  
+2025-03-15 18: 38: 14 <text>Ποιά </text>  
+2025-03-15 18: 38: 14 #### Output: 2025-03-15 18: 38: 14 
+2025-03-15 18: 38: 14 INFO: 192.168.65.1: 39785 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 38: 23 INFO: 192.168.65.1: 19897 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 38: 23 INFO: 192.168.65.1: 21093 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 38: 23 azure_agent_pipeline
+2025-03-15 18: 38: 23 azure_agent_pipeline
+2025-03-15 18: 38: 23 pipe:azure_agent_pipeline running
+2025-03-15 18: 38: 23 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα </text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά είναι τα διαθέσιμα ",
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 38: 23 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα </text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 38: 23 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 38: 23 METADATA:  ====================
+2025-03-15 18: 38: 23 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά είναι τα διαθέσιμα ",
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 38: 23 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 38: 23 USER_MESSAGE:  ### Task: 2025-03-15 18: 38: 23 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 38: 23 
+2025-03-15 18: 38: 23 ### **Instructions**: 2025-03-15 18: 38: 23 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 38: 23 2. Use `<type>` to guide your output: 2025-03-15 18: 38: 23    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 38: 23    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 38: 23 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 38: 23 4. Ensure the continuation: 2025-03-15 18: 38: 23    - Flows naturally from `<text>`.  
+2025-03-15 18: 38: 23    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 38: 23 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 38: 23 
+2025-03-15 18: 38: 23 ### **Output Rules**: 2025-03-15 18: 38: 23 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 38: 23 
+2025-03-15 18: 38: 23 ### **Examples**: 2025-03-15 18: 38: 23 #### Example 1: 2025-03-15 18: 38: 23 Input: 2025-03-15 18: 38: 23 <type>General</type>  
+2025-03-15 18: 38: 23 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 38: 23 Output: 2025-03-15 18: 38: 23 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 38: 23 
+2025-03-15 18: 38: 23 #### Example 2: 2025-03-15 18: 38: 23 Input: 2025-03-15 18: 38: 23 <type>Search Query</type>  
+2025-03-15 18: 38: 23 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 38: 23 Output: 2025-03-15 18: 38: 23 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 38: 23 
+2025-03-15 18: 38: 23 ---
+2025-03-15 18: 38: 23 ### Context: 2025-03-15 18: 38: 23 <chat_history>
+2025-03-15 18: 38: 23 
+2025-03-15 18: 38: 23 </chat_history>
+2025-03-15 18: 38: 23 <type>search query</type>  
+2025-03-15 18: 38: 23 <text>Ποιά είναι τα διαθέσιμα </text>  
+2025-03-15 18: 38: 23 #### Output: 2025-03-15 18: 38: 23 
+2025-03-15 18: 38: 23 INFO: 192.168.65.1: 16667 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 38: 27 INFO: 192.168.65.1: 30906 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 38: 27 INFO: 192.168.65.1: 58627 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 38: 27 azure_agent_pipeline
+2025-03-15 18: 38: 27 azure_agent_pipeline
+2025-03-15 18: 38: 27 pipe:azure_agent_pipeline running
+2025-03-15 18: 38: 27 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα καταναλωτικ</text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά είναι τα διαθέσιμα καταναλωτικ",
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 38: 27 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα καταναλωτικ</text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 38: 27 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 38: 27 METADATA:  ====================
+2025-03-15 18: 38: 27 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά είναι τα διαθέσιμα καταναλωτικ",
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 38: 27 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 38: 27 USER_MESSAGE:  ### Task: 2025-03-15 18: 38: 27 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 38: 27 
+2025-03-15 18: 38: 27 ### **Instructions**: 2025-03-15 18: 38: 27 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 38: 27 2. Use `<type>` to guide your output: 2025-03-15 18: 38: 27    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 38: 27    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 38: 27 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 38: 27 4. Ensure the continuation: 2025-03-15 18: 38: 27    - Flows naturally from `<text>`.  
+2025-03-15 18: 38: 27    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 38: 27 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 38: 27 
+2025-03-15 18: 38: 27 ### **Output Rules**: 2025-03-15 18: 38: 27 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 38: 27 
+2025-03-15 18: 38: 27 ### **Examples**: 2025-03-15 18: 38: 27 #### Example 1: 2025-03-15 18: 38: 27 Input: 2025-03-15 18: 38: 27 <type>General</type>  
+2025-03-15 18: 38: 27 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 38: 27 Output: 2025-03-15 18: 38: 27 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 38: 27 
+2025-03-15 18: 38: 27 #### Example 2: 2025-03-15 18: 38: 27 Input: 2025-03-15 18: 38: 27 <type>Search Query</type>  
+2025-03-15 18: 38: 27 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 38: 27 Output: 2025-03-15 18: 38: 27 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 38: 27 
+2025-03-15 18: 38: 27 ---
+2025-03-15 18: 38: 27 ### Context: 2025-03-15 18: 38: 27 <chat_history>
+2025-03-15 18: 38: 27 
+2025-03-15 18: 38: 27 </chat_history>
+2025-03-15 18: 38: 27 <type>search query</type>  
+2025-03-15 18: 38: 27 <text>Ποιά είναι τα διαθέσιμα καταναλωτικ</text>  
+2025-03-15 18: 38: 27 #### Output: 2025-03-15 18: 38: 27 
+2025-03-15 18: 38: 27 INFO: 192.168.65.1: 60478 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 38: 31 INFO: 192.168.65.1: 65114 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 38: 31 INFO: 192.168.65.1: 29108 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 38: 31 azure_agent_pipeline
+2025-03-15 18: 38: 31 azure_agent_pipeline
+2025-03-15 18: 38: 31 pipe:azure_agent_pipeline running
+2025-03-15 18: 38: 31 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα καταναλωτικά δενεια</text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά είναι τα διαθέσιμα καταναλωτικά δενεια",
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 38: 31 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα καταναλωτικά δενεια</text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 38: 31 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 38: 31 METADATA:  ====================
+2025-03-15 18: 38: 31 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά είναι τα διαθέσιμα καταναλωτικά δενεια",
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 38: 31 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 38: 31 USER_MESSAGE:  ### Task: 2025-03-15 18: 38: 31 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 38: 31 
+2025-03-15 18: 38: 31 ### **Instructions**: 2025-03-15 18: 38: 31 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 38: 31 2. Use `<type>` to guide your output: 2025-03-15 18: 38: 31    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 38: 31    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 38: 31 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 38: 31 4. Ensure the continuation: 2025-03-15 18: 38: 31    - Flows naturally from `<text>`.  
+2025-03-15 18: 38: 31    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 38: 31 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 38: 31 
+2025-03-15 18: 38: 31 ### **Output Rules**: 2025-03-15 18: 38: 31 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 38: 31 
+2025-03-15 18: 38: 31 ### **Examples**: 2025-03-15 18: 38: 31 #### Example 1: 2025-03-15 18: 38: 31 Input: 2025-03-15 18: 38: 31 <type>General</type>  
+2025-03-15 18: 38: 31 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 38: 31 Output: 2025-03-15 18: 38: 31 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 38: 31 
+2025-03-15 18: 38: 31 #### Example 2: 2025-03-15 18: 38: 31 Input: 2025-03-15 18: 38: 31 <type>Search Query</type>  
+2025-03-15 18: 38: 31 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 38: 31 Output: 2025-03-15 18: 38: 31 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 38: 31 
+2025-03-15 18: 38: 31 ---
+2025-03-15 18: 38: 31 ### Context: 2025-03-15 18: 38: 31 <chat_history>
+2025-03-15 18: 38: 31 
+2025-03-15 18: 38: 31 </chat_history>
+2025-03-15 18: 38: 31 <type>search query</type>  
+2025-03-15 18: 38: 31 <text>Ποιά είναι τα διαθέσιμα καταναλωτικά δενεια</text>  
+2025-03-15 18: 38: 31 #### Output: 2025-03-15 18: 38: 31 
+2025-03-15 18: 38: 31 INFO: 192.168.65.1: 26499 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 38: 37 INFO: 192.168.65.1: 58637 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 38: 37 INFO: 192.168.65.1: 21849 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 38: 37 azure_agent_pipeline
+2025-03-15 18: 38: 37 azure_agent_pipeline
+2025-03-15 18: 38: 37 pipe:azure_agent_pipeline running
+2025-03-15 18: 38: 37 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα</text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα",
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 38: 37 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα</text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 38: 37 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 38: 37 METADATA:  ====================
+2025-03-15 18: 38: 37 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα",
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 38: 37 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 38: 37 USER_MESSAGE:  ### Task: 2025-03-15 18: 38: 37 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 38: 37 
+2025-03-15 18: 38: 37 ### **Instructions**: 2025-03-15 18: 38: 37 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 38: 37 2. Use `<type>` to guide your output: 2025-03-15 18: 38: 37    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 38: 37    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 38: 37 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 38: 37 4. Ensure the continuation: 2025-03-15 18: 38: 37    - Flows naturally from `<text>`.  
+2025-03-15 18: 38: 37    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 38: 37 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 38: 37 
+2025-03-15 18: 38: 37 ### **Output Rules**: 2025-03-15 18: 38: 37 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 38: 37 
+2025-03-15 18: 38: 37 ### **Examples**: 2025-03-15 18: 38: 37 #### Example 1: 2025-03-15 18: 38: 37 Input: 2025-03-15 18: 38: 37 <type>General</type>  
+2025-03-15 18: 38: 37 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 38: 37 Output: 2025-03-15 18: 38: 37 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 38: 37 
+2025-03-15 18: 38: 37 #### Example 2: 2025-03-15 18: 38: 37 Input: 2025-03-15 18: 38: 37 <type>Search Query</type>  
+2025-03-15 18: 38: 37 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 38: 37 Output: 2025-03-15 18: 38: 37 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 38: 37 
+2025-03-15 18: 38: 37 ---
+2025-03-15 18: 38: 37 ### Context: 2025-03-15 18: 38: 37 <chat_history>
+2025-03-15 18: 38: 37 
+2025-03-15 18: 38: 37 </chat_history>
+2025-03-15 18: 38: 37 <type>search query</type>  
+2025-03-15 18: 38: 37 <text>Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα</text>  
+2025-03-15 18: 38: 37 #### Output: 2025-03-15 18: 38: 37 
+2025-03-15 18: 38: 37 INFO: 192.168.65.1: 58503 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 38: 38 INFO: 192.168.65.1: 17217 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 38: 38 INFO: 192.168.65.1: 34224 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 38: 38 azure_agent_pipeline
+2025-03-15 18: 38: 38 azure_agent_pipeline
+2025-03-15 18: 38: 38 pipe:azure_agent_pipeline running
+2025-03-15 18: 38: 38 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα. </text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα. ",
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 38: 38 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\n\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα. </text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 38: 38 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 38: 38 METADATA:  ====================
+2025-03-15 18: 38: 38 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα. ",
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 38: 38 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 38: 38 USER_MESSAGE:  ### Task: 2025-03-15 18: 38: 38 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 38: 38 
+2025-03-15 18: 38: 38 ### **Instructions**: 2025-03-15 18: 38: 38 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 38: 38 2. Use `<type>` to guide your output: 2025-03-15 18: 38: 38    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 38: 38    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 38: 38 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 38: 38 4. Ensure the continuation: 2025-03-15 18: 38: 38    - Flows naturally from `<text>`.  
+2025-03-15 18: 38: 38    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 38: 38 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 38: 38 
+2025-03-15 18: 38: 38 ### **Output Rules**: 2025-03-15 18: 38: 38 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 38: 38 
+2025-03-15 18: 38: 38 ### **Examples**: 2025-03-15 18: 38: 38 #### Example 1: 2025-03-15 18: 38: 38 Input: 2025-03-15 18: 38: 38 <type>General</type>  
+2025-03-15 18: 38: 38 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 38: 38 Output: 2025-03-15 18: 38: 38 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 38: 38 
+2025-03-15 18: 38: 38 #### Example 2: 2025-03-15 18: 38: 38 Input: 2025-03-15 18: 38: 38 <type>Search Query</type>  
+2025-03-15 18: 38: 38 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 38: 38 Output: 2025-03-15 18: 38: 38 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 38: 38 
+2025-03-15 18: 38: 38 ---
+2025-03-15 18: 38: 38 ### Context: 2025-03-15 18: 38: 38 <chat_history>
+2025-03-15 18: 38: 38 
+2025-03-15 18: 38: 38 </chat_history>
+2025-03-15 18: 38: 38 <type>search query</type>  
+2025-03-15 18: 38: 38 <text>Ποιά είναι τα διαθέσιμα καταναλωτικά δενειακά προϊόντα. </text>  
+2025-03-15 18: 38: 38 #### Output: 2025-03-15 18: 38: 38 
+2025-03-15 18: 38: 38 INFO: 192.168.65.1: 16386 - "POST /chat/completions HTTP/1.1"200 OK
+
+
+First Question/Answer ========================================================================================================
+2025-03-15 18: 40: 41 INFO: 192.168.65.1: 62682 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 40: 41 INFO: 192.168.65.1: 20874 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 40: 41 azure_agent_pipeline
+2025-03-15 18: 40: 41 azure_agent_pipeline
+2025-03-15 18: 40: 41 INFO: 192.168.65.1: 48599 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 40: 52 pipe:azure_agent_pipeline running
+2025-03-15 18: 40: 52 BODY: {
+    "stream": True,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα."
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a",
+        "message_id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+        "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+        "tool_ids": None,
+        "files": None,
+        "features": {
+            "image_generation": False,
+            "code_interpreter": False,
+            "web_search": False
+        },
+        "variables": {
+            "{{USER_NAME}}": "George Marinos",
+            "{{USER_LOCATION}}": "Unknown",
+            "{{CURRENT_DATETIME}}": "2025-03-15 18:40:41",
+            "{{CURRENT_DATE}}": "2025-03-15",
+            "{{CURRENT_TIME}}": "18:40:41",
+            "{{CURRENT_WEEKDAY}}": "Saturday",
+            "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+            "{{USER_LANGUAGE}}": "en-US"
+        },
+        "model": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            },
+            "openai": {
+                "id": "azure_agent_pipeline",
+                "name": "Athena Agent",
+                "object": "model",
+                "created": 1742056266,
+                "owned_by": "openai",
+                "pipeline": {
+                    "type": "pipe",
+                    "valves": True
+                }
+            },
+            "urlIdx": 1,
+            "actions": []
+        },
+        "direct": False
+    }
+}
+2025-03-15 18: 40: 52 MESSAGES: [
+    {
+        "role": "user",
+        "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα."
+    }
+]
+2025-03-15 18: 40: 52 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 40: 52 METADATA:  ====================
+2025-03-15 18: 40: 52 METADATA: {
+    "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a",
+    "message_id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+    "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+    "tool_ids": None,
+    "files": None,
+    "features": {
+        "image_generation": False,
+        "code_interpreter": False,
+        "web_search": False
+    },
+    "variables": {
+        "{{USER_NAME}}": "George Marinos",
+        "{{USER_LOCATION}}": "Unknown",
+        "{{CURRENT_DATETIME}}": "2025-03-15 18:40:41",
+        "{{CURRENT_DATE}}": "2025-03-15",
+        "{{CURRENT_TIME}}": "18:40:41",
+        "{{CURRENT_WEEKDAY}}": "Saturday",
+        "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+        "{{USER_LANGUAGE}}": "en-US"
+    },
+    "model": {
+        "id": "azure_agent_pipeline",
+        "name": "Athena Agent",
+        "object": "model",
+        "created": 1742056266,
+        "owned_by": "openai",
+        "pipeline": {
+            "type": "pipe",
+            "valves": True
+        },
+        "openai": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            }
+        },
+        "urlIdx": 1,
+        "actions": []
+    },
+    "direct": False
+}
+2025-03-15 18: 40: 52 USER_ID: 8e3423df-a803-457a-aafa-10cc79c4a3ed, CHAT_ID: 87308bf7-8d30-4b11-8eb8-810ffbbf2d6a
+2025-03-15 18: 40: 52 USER_MESSAGE:  Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.
+2025-03-15 18: 40: 52 Using existing thread, thread ID: thread_hkgmXfff4VFkj0flkXwQY2Xp
+2025-03-15 18: 40: 52 Created message, message ID: msg_wclfWzsgSOMXXMh4vTRyfCvR
+2025-03-15 18: 40: 52 Run finished with status: RunStatus.COMPLETED
+2025-03-15 18: 40: 52 Messages: {
+    "object": "list",
+    "data": [
+        {
+            "id": "msg_469jnDHGvCUgXSp2VNLkcLse",
+            "object": "thread.message",
+            "created_at": 1742056846,
+            "assistant_id": "asst_31PXRzUQe6Oko4qPoU6L4XHM",
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": "run_uQPMTzW74ahtO8wFEweZl7tS",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                        "annotations": [
+                            {
+                                "type": "url_citation",
+                                "text": "【5:0†source】",
+                                "start_index": 1006,
+                                "end_index": 1018,
+                                "url_citation": {
+                                    "url": "J497_001_2023-Καταχώρηση Αιτήματος Προϊόντος ΑΡΣΗ ΒΑΡΩΝ-ΜΕΣΩ ΚΑΤΑΣΤΗΜΑΤΟΣ_WF.docx",
+                                    "title": "J497_001_2023-Καταχώρηση Αιτήματος Προϊόντος ΑΡΣΗ ΒΑΡΩΝ-ΜΕΣΩ ΚΑΤΑΣΤΗΜΑΤΟΣ_WF.docx"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_wclfWzsgSOMXXMh4vTRyfCvR",
+            "object": "thread.message",
+            "created_at": 1742056843,
+            "assistant_id": None,
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_UjOmhOGmzhDu5qmYFMxM7hkI",
+            "object": "thread.message",
+            "created_at": 1742056338,
+            "assistant_id": "asst_31PXRzUQe6Oko4qPoU6L4XHM",
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": "run_hzaTTYzEFB1kkmryRZ78KtPm",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Δεν ξέρω.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_XyPUGR1HhK1CW3rjqjI6V7H5",
+            "object": "thread.message",
+            "created_at": 1742056336,
+            "assistant_id": None,
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Ποιά είναι τα διαθέσιμα καταναλωτικά προϊόντα",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        }
+    ],
+    "first_id": "msg_469jnDHGvCUgXSp2VNLkcLse",
+    "last_id": "msg_XyPUGR1HhK1CW3rjqjI6V7H5",
+    "has_more": False
+}
+2025-03-15 18: 40: 52 Last Message: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν: 2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: 2025-03-15 18: 40: 52   - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.
+2025-03-15 18: 40: 52   - Διατίθεται για: 2025-03-15 18: 40: 52     - Γενικούς Πελάτες
+2025-03-15 18: 40: 52     - Προσωπικό ΕΤΕ και Θυγατρικών
+2025-03-15 18: 40: 52     - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: 2025-03-15 18: 40: 52   - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Δάνεια με εμπράγματες εξασφαλίσεις**: 2025-03-15 18: 40: 52   - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Απαλλαγές από τις διευκολύνσεις**: 2025-03-15 18: 40: 52   - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.
+2025-03-15 18: 40: 52   - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".
+2025-03-15 18: 40: 52   - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 Προϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5: 0†source】.
+2025-03-15 18: 40: 52 INFO: 192.168.65.1: 56344 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 40: 52 INFO: 192.168.65.1: 60122 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 40: 52 INFO: 192.168.65.1: 39174 - "POST /azure_agent_pipeline/filter/outlet HTTP/1.1"200 OK
+2025-03-15 18: 40: 52 azure_agent_pipeline
+2025-03-15 18: 40: 52 azure_agent_pipeline
+2025-03-15 18: 40: 52 pipe:azure_agent_pipeline running
+2025-03-15 18: 40: 52 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nGenerate a concise, 3-5 word title with an emoji summarizing the chat history.\n### Guidelines:\n- The title should clearly represent the main theme or subject of the conversation.\n- Use emojis that enhance understanding of the topic, but avoid quotation marks or special formatting.\n- Write the title in the chat\"s primary language; default to English if multilingual.\n- Prioritize accuracy over excessive creativity; keep it clear and simple.\n### Output:\nJSON format: { "title": "your concise title here" }\n### Examples:\n- { "title": "📉 Stock Market Trends" },\n- { "title": "🍪 Perfect Chocolate Chip Recipe" },\n- { "title": "Evolution of Music Streaming" },\n- { "title": "Remote Work Productivity Tips" },\n- { "title": "Artificial Intelligence in Healthcare" },\n- { "title": "🎮 Video Game Development Insights" }\n### Chat History:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a",
+        "message_id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+        "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+        "tool_ids": None,
+        "files": None,
+        "features": {
+            "image_generation": False,
+            "code_interpreter": False,
+            "web_search": False
+        },
+        "variables": {
+            "{{USER_NAME}}": "George Marinos",
+            "{{USER_LOCATION}}": "Unknown",
+            "{{CURRENT_DATETIME}}": "2025-03-15 18:40:41",
+            "{{CURRENT_DATE}}": "2025-03-15",
+            "{{CURRENT_TIME}}": "18:40:41",
+            "{{CURRENT_WEEKDAY}}": "Saturday",
+            "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+            "{{USER_LANGUAGE}}": "en-US"
+        },
+        "model": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            },
+            "openai": {
+                "id": "azure_agent_pipeline",
+                "name": "Athena Agent",
+                "object": "model",
+                "created": 1742056266,
+                "owned_by": "openai",
+                "pipeline": {
+                    "type": "pipe",
+                    "valves": True
+                }
+            },
+            "urlIdx": 1,
+            "actions": []
+        },
+        "direct": False,
+        "task": "title_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "messages": [
+                {
+                    "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "parentId": None,
+                    "childrenIds": [
+                        "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                    ],
+                    "role": "user",
+                    "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                    "timestamp": 1742056841,
+                    "models": [
+                        "azure_agent_pipeline"
+                    ]
+                },
+                {
+                    "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                    "childrenIds": [],
+                    "role": "assistant",
+                    "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                    "model": "azure_agent_pipeline",
+                    "modelName": "Athena Agent",
+                    "modelIdx": 0,
+                    "userContext": None,
+                    "timestamp": 1742056841
+                }
+            ],
+            "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a"
+        }
+    },
+    "max_tokens": 1000
+}
+2025-03-15 18: 40: 52 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nGenerate a concise, 3-5 word title with an emoji summarizing the chat history.\n### Guidelines:\n- The title should clearly represent the main theme or subject of the conversation.\n- Use emojis that enhance understanding of the topic, but avoid quotation marks or special formatting.\n- Write the title in the chat\"s primary language; default to English if multilingual.\n- Prioritize accuracy over excessive creativity; keep it clear and simple.\n### Output:\nJSON format: { "title": "your concise title here" }\n### Examples:\n- { "title": "📉 Stock Market Trends" },\n- { "title": "🍪 Perfect Chocolate Chip Recipe" },\n- { "title": "Evolution of Music Streaming" },\n- { "title": "Remote Work Productivity Tips" },\n- { "title": "Artificial Intelligence in Healthcare" },\n- { "title": "🎮 Video Game Development Insights" }\n### Chat History:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>"
+    }
+]
+2025-03-15 18: 40: 52 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 40: 52 METADATA:  ====================
+2025-03-15 18: 40: 52 METADATA: {
+    "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a",
+    "message_id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+    "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+    "tool_ids": None,
+    "files": None,
+    "features": {
+        "image_generation": False,
+        "code_interpreter": False,
+        "web_search": False
+    },
+    "variables": {
+        "{{USER_NAME}}": "George Marinos",
+        "{{USER_LOCATION}}": "Unknown",
+        "{{CURRENT_DATETIME}}": "2025-03-15 18:40:41",
+        "{{CURRENT_DATE}}": "2025-03-15",
+        "{{CURRENT_TIME}}": "18:40:41",
+        "{{CURRENT_WEEKDAY}}": "Saturday",
+        "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+        "{{USER_LANGUAGE}}": "en-US"
+    },
+    "model": {
+        "id": "azure_agent_pipeline",
+        "name": "Athena Agent",
+        "object": "model",
+        "created": 1742056266,
+        "owned_by": "openai",
+        "pipeline": {
+            "type": "pipe",
+            "valves": True
+        },
+        "openai": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            }
+        },
+        "urlIdx": 1,
+        "actions": []
+    },
+    "direct": False,
+    "task": "title_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "messages": [
+            {
+                "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "parentId": None,
+                "childrenIds": [
+                    "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                ],
+                "role": "user",
+                "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                "timestamp": 1742056841,
+                "models": [
+                    "azure_agent_pipeline"
+                ]
+            },
+            {
+                "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742056841
+            }
+        ],
+        "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a"
+    }
+}
+2025-03-15 18: 40: 52 USER_ID: 8e3423df-a803-457a-aafa-10cc79c4a3ed, CHAT_ID: 87308bf7-8d30-4b11-8eb8-810ffbbf2d6a
+2025-03-15 18: 40: 52 USER_MESSAGE:  ### Task: 2025-03-15 18: 40: 52 Generate a concise,
+3-5 word title with an emoji summarizing the chat history.
+2025-03-15 18: 40: 52 ### Guidelines: 2025-03-15 18: 40: 52 - The title should clearly represent the main theme or subject of the conversation.
+2025-03-15 18: 40: 52 - Use emojis that enhance understanding of the topic, but avoid quotation marks or special formatting.
+2025-03-15 18: 40: 52 - Write the title in the chat's primary language; default to English if multilingual.
+2025-03-15 18: 40: 52 - Prioritize accuracy over excessive creativity; keep it clear and simple.
+2025-03-15 18: 40: 52 ### Output: 2025-03-15 18: 40: 52 JSON format: {
+    "title": "your concise title here"
+}
+2025-03-15 18: 40: 52 ### Examples: 2025-03-15 18: 40: 52 - {
+    "title": "Stock Market Trends"
+},
+2025-03-15 18: 40: 52 - {
+    "title": "🍪 Perfect Chocolate Chip Recipe"
+},
+2025-03-15 18: 40: 52 - {
+    "title": "Evolution of Music Streaming"
+},
+2025-03-15 18: 40: 52 - {
+    "title": "Remote Work Productivity Tips"
+},
+2025-03-15 18: 40: 52 - {
+    "title": "Artificial Intelligence in Healthcare"
+},
+2025-03-15 18: 40: 52 - {
+    "title": "🎮 Video Game Development Insights"
+}
+2025-03-15 18: 40: 52 ### Chat History: 2025-03-15 18: 40: 52 <chat_history>
+2025-03-15 18: 40: 52 USER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.
+2025-03-15 18: 40: 52 ASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν: 2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: 2025-03-15 18: 40: 52   - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.
+2025-03-15 18: 40: 52   - Διατίθεται για: 2025-03-15 18: 40: 52     - Γενικούς Πελάτες
+2025-03-15 18: 40: 52     - Προσωπικό ΕΤΕ και Θυγατρικών
+2025-03-15 18: 40: 52     - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: 2025-03-15 18: 40: 52   - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Δάνεια με εμπράγματες εξασφαλίσεις**: 2025-03-15 18: 40: 52   - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Απαλλαγές από τις διευκολύνσεις**: 2025-03-15 18: 40: 52   - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.
+2025-03-15 18: 40: 52   - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".
+2025-03-15 18: 40: 52   - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 Προϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5: 0†source】.
+2025-03-15 18: 40: 52 </chat_history>
+2025-03-15 18: 40: 52 INFO: 192.168.65.1: 39964 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 40: 52 INFO: 192.168.65.1: 37420 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 40: 52 azure_agent_pipeline
+2025-03-15 18: 40: 52 azure_agent_pipeline
+2025-03-15 18: 40: 52 pipe:azure_agent_pipeline running
+2025-03-15 18: 40: 52 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nGenerate 1-3 broad tags categorizing the main themes of the chat history, along with 1-3 more specific subtopic tags.\n\n### Guidelines:\n- Start with high-level domains (e.g. Science, Technology, Philosophy, Arts, Politics, Business, Health, Sports, Entertainment, Education)\n- Consider including relevant subfields/subdomains if they are strongly represented throughout the conversation\n- If content is too short (less than 3 messages) or too diverse, use only ["General"]\n- Use the chat\"s primary language; default to English if multilingual\n- Prioritize accuracy over specificity\n\n### Output:\nJSON format: { "tags": ["tag1", "tag2", "tag3"] }\n\n### Chat History:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a",
+        "message_id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+        "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+        "tool_ids": None,
+        "files": None,
+        "features": {
+            "image_generation": False,
+            "code_interpreter": False,
+            "web_search": False
+        },
+        "variables": {
+            "{{USER_NAME}}": "George Marinos",
+            "{{USER_LOCATION}}": "Unknown",
+            "{{CURRENT_DATETIME}}": "2025-03-15 18:40:41",
+            "{{CURRENT_DATE}}": "2025-03-15",
+            "{{CURRENT_TIME}}": "18:40:41",
+            "{{CURRENT_WEEKDAY}}": "Saturday",
+            "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+            "{{USER_LANGUAGE}}": "en-US"
+        },
+        "model": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            },
+            "openai": {
+                "id": "azure_agent_pipeline",
+                "name": "Athena Agent",
+                "object": "model",
+                "created": 1742056266,
+                "owned_by": "openai",
+                "pipeline": {
+                    "type": "pipe",
+                    "valves": True
+                }
+            },
+            "urlIdx": 1,
+            "actions": []
+        },
+        "direct": False,
+        "task": "tags_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "messages": [
+                {
+                    "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "parentId": None,
+                    "childrenIds": [
+                        "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                    ],
+                    "role": "user",
+                    "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                    "timestamp": 1742056841,
+                    "models": [
+                        "azure_agent_pipeline"
+                    ]
+                },
+                {
+                    "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                    "childrenIds": [],
+                    "role": "assistant",
+                    "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                    "model": "azure_agent_pipeline",
+                    "modelName": "Athena Agent",
+                    "modelIdx": 0,
+                    "userContext": None,
+                    "timestamp": 1742056841
+                }
+            ],
+            "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a"
+        }
+    }
+}
+2025-03-15 18: 40: 52 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nGenerate 1-3 broad tags categorizing the main themes of the chat history, along with 1-3 more specific subtopic tags.\n\n### Guidelines:\n- Start with high-level domains (e.g. Science, Technology, Philosophy, Arts, Politics, Business, Health, Sports, Entertainment, Education)\n- Consider including relevant subfields/subdomains if they are strongly represented throughout the conversation\n- If content is too short (less than 3 messages) or too diverse, use only ["General"]\n- Use the chat\"s primary language; default to English if multilingual\n- Prioritize accuracy over specificity\n\n### Output:\nJSON format: { "tags": ["tag1", "tag2", "tag3"] }\n\n### Chat History:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>"
+    }
+]
+2025-03-15 18: 40: 52 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 40: 52 METADATA:  ====================
+2025-03-15 18: 40: 52 METADATA: {
+    "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a",
+    "message_id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+    "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+    "tool_ids": None,
+    "files": None,
+    "features": {
+        "image_generation": False,
+        "code_interpreter": False,
+        "web_search": False
+    },
+    "variables": {
+        "{{USER_NAME}}": "George Marinos",
+        "{{USER_LOCATION}}": "Unknown",
+        "{{CURRENT_DATETIME}}": "2025-03-15 18:40:41",
+        "{{CURRENT_DATE}}": "2025-03-15",
+        "{{CURRENT_TIME}}": "18:40:41",
+        "{{CURRENT_WEEKDAY}}": "Saturday",
+        "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+        "{{USER_LANGUAGE}}": "en-US"
+    },
+    "model": {
+        "id": "azure_agent_pipeline",
+        "name": "Athena Agent",
+        "object": "model",
+        "created": 1742056266,
+        "owned_by": "openai",
+        "pipeline": {
+            "type": "pipe",
+            "valves": True
+        },
+        "openai": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            }
+        },
+        "urlIdx": 1,
+        "actions": []
+    },
+    "direct": False,
+    "task": "tags_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "messages": [
+            {
+                "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "parentId": None,
+                "childrenIds": [
+                    "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                ],
+                "role": "user",
+                "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                "timestamp": 1742056841,
+                "models": [
+                    "azure_agent_pipeline"
+                ]
+            },
+            {
+                "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742056841
+            }
+        ],
+        "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a"
+    }
+}
+2025-03-15 18: 40: 52 USER_ID: 8e3423df-a803-457a-aafa-10cc79c4a3ed, CHAT_ID: 87308bf7-8d30-4b11-8eb8-810ffbbf2d6a
+2025-03-15 18: 40: 52 USER_MESSAGE:  ### Task: 2025-03-15 18: 40: 52 Generate 1-3 broad tags categorizing the main themes of the chat history, along with 1-3 more specific subtopic tags.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 ### Guidelines: 2025-03-15 18: 40: 52 - Start with high-level domains (e.g. Science, Technology, Philosophy, Arts, Politics, Business, Health, Sports, Entertainment, Education)
+2025-03-15 18: 40: 52 - Consider including relevant subfields/subdomains if they are strongly represented throughout the conversation
+2025-03-15 18: 40: 52 - If content is too short (less than 3 messages) or too diverse, use only [
+    "General"
+]
+2025-03-15 18: 40: 52 - Use the chat's primary language; default to English if multilingual
+2025-03-15 18: 40: 52 - Prioritize accuracy over specificity
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 ### Output: 2025-03-15 18: 40: 52 JSON format: {
+    "tags": [
+        "tag1",
+        "tag2",
+        "tag3"
+    ]
+}
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 ### Chat History: 2025-03-15 18: 40: 52 <chat_history>
+2025-03-15 18: 40: 52 USER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.
+2025-03-15 18: 40: 52 ASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν: 2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: 2025-03-15 18: 40: 52   - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.
+2025-03-15 18: 40: 52   - Διατίθεται για: 2025-03-15 18: 40: 52     - Γενικούς Πελάτες
+2025-03-15 18: 40: 52     - Προσωπικό ΕΤΕ και Θυγατρικών
+2025-03-15 18: 40: 52     - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: 2025-03-15 18: 40: 52   - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Δάνεια με εμπράγματες εξασφαλίσεις**: 2025-03-15 18: 40: 52   - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 - **Απαλλαγές από τις διευκολύνσεις**: 2025-03-15 18: 40: 52   - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.
+2025-03-15 18: 40: 52   - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".
+2025-03-15 18: 40: 52   - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.
+2025-03-15 18: 40: 52 
+2025-03-15 18: 40: 52 Προϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5: 0†source】.
+2025-03-15 18: 40: 52 </chat_history>
+2025-03-15 18: 40: 52 INFO: 192.168.65.1: 35588 - "POST /chat/completions HTTP/1.1"200 OK
+
+While Typing the Second Question ========================================================================================================
+2025-03-15 18: 43: 04 INFO: 192.168.65.1: 63981 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 43: 04 INFO: 192.168.65.1: 50031 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 43: 04 azure_agent_pipeline
+2025-03-15 18: 43: 04 azure_agent_pipeline
+2025-03-15 18: 43: 04 pipe:azure_agent_pipeline running
+2025-03-15 18: 43: 04 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι η διαδικασία </text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά είναι η διαδικασία ",
+            "messages": [
+                {
+                    "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "parentId": None,
+                    "childrenIds": [
+                        "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                    ],
+                    "role": "user",
+                    "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                    "timestamp": 1742056841,
+                    "models": [
+                        "azure_agent_pipeline"
+                    ]
+                },
+                {
+                    "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                    "childrenIds": [],
+                    "role": "assistant",
+                    "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                    "model": "azure_agent_pipeline",
+                    "modelName": "Athena Agent",
+                    "modelIdx": 0,
+                    "userContext": None,
+                    "timestamp": 1742056841,
+                    "lastSentence": "Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.",
+                    "done": True
+                }
+            ],
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 43: 04 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι η διαδικασία </text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 43: 04 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 43: 04 METADATA:  ====================
+2025-03-15 18: 43: 04 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά είναι η διαδικασία ",
+        "messages": [
+            {
+                "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "parentId": None,
+                "childrenIds": [
+                    "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                ],
+                "role": "user",
+                "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                "timestamp": 1742056841,
+                "models": [
+                    "azure_agent_pipeline"
+                ]
+            },
+            {
+                "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742056841,
+                "lastSentence": "Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.",
+                "done": True
+            }
+        ],
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 43: 04 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 43: 04 USER_MESSAGE:  ### Task: 2025-03-15 18: 43: 04 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 ### **Instructions**: 2025-03-15 18: 43: 04 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 43: 04 2. Use `<type>` to guide your output: 2025-03-15 18: 43: 04    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 43: 04    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 43: 04 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 43: 04 4. Ensure the continuation: 2025-03-15 18: 43: 04    - Flows naturally from `<text>`.  
+2025-03-15 18: 43: 04    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 43: 04 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 ### **Output Rules**: 2025-03-15 18: 43: 04 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 ### **Examples**: 2025-03-15 18: 43: 04 #### Example 1: 2025-03-15 18: 43: 04 Input: 2025-03-15 18: 43: 04 <type>General</type>  
+2025-03-15 18: 43: 04 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 43: 04 Output: 2025-03-15 18: 43: 04 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 #### Example 2: 2025-03-15 18: 43: 04 Input: 2025-03-15 18: 43: 04 <type>Search Query</type>  
+2025-03-15 18: 43: 04 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 43: 04 Output: 2025-03-15 18: 43: 04 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 ---
+2025-03-15 18: 43: 04 ### Context: 2025-03-15 18: 43: 04 <chat_history>
+2025-03-15 18: 43: 04 USER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.
+2025-03-15 18: 43: 04 ASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν: 2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 - **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: 2025-03-15 18: 43: 04   - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.
+2025-03-15 18: 43: 04   - Διατίθεται για: 2025-03-15 18: 43: 04     - Γενικούς Πελάτες
+2025-03-15 18: 43: 04     - Προσωπικό ΕΤΕ και Θυγατρικών
+2025-03-15 18: 43: 04     - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.
+2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 - **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: 2025-03-15 18: 43: 04   - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.
+2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 - **Δάνεια με εμπράγματες εξασφαλίσεις**: 2025-03-15 18: 43: 04   - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.
+2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 - **Απαλλαγές από τις διευκολύνσεις**: 2025-03-15 18: 43: 04   - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.
+2025-03-15 18: 43: 04   - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".
+2025-03-15 18: 43: 04   - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.
+2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 Προϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5: 0†source】.
+2025-03-15 18: 43: 04 </chat_history>
+2025-03-15 18: 43: 04 <type>search query</type>  
+2025-03-15 18: 43: 04 <text>Ποιά είναι η διαδικασία </text>  
+2025-03-15 18: 43: 04 #### Output: 2025-03-15 18: 43: 04 
+2025-03-15 18: 43: 04 INFO: 192.168.65.1: 56626 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 43: 29 INFO: 192.168.65.1: 45531 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 43: 29 INFO: 192.168.65.1: 61577 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 43: 29 azure_agent_pipeline
+2025-03-15 18: 43: 29 azure_agent_pipeline
+2025-03-15 18: 43: 29 pipe:azure_agent_pipeline running
+2025-03-15 18: 43: 29 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι η διαδικασία για την </text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά είναι η διαδικασία για την ",
+            "messages": [
+                {
+                    "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "parentId": None,
+                    "childrenIds": [
+                        "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                    ],
+                    "role": "user",
+                    "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                    "timestamp": 1742056841,
+                    "models": [
+                        "azure_agent_pipeline"
+                    ]
+                },
+                {
+                    "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                    "childrenIds": [],
+                    "role": "assistant",
+                    "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                    "model": "azure_agent_pipeline",
+                    "modelName": "Athena Agent",
+                    "modelIdx": 0,
+                    "userContext": None,
+                    "timestamp": 1742056841,
+                    "lastSentence": "Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.",
+                    "done": True
+                }
+            ],
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 43: 29 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι η διαδικασία για την </text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 43: 29 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 43: 29 METADATA:  ====================
+2025-03-15 18: 43: 29 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά είναι η διαδικασία για την ",
+        "messages": [
+            {
+                "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "parentId": None,
+                "childrenIds": [
+                    "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                ],
+                "role": "user",
+                "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                "timestamp": 1742056841,
+                "models": [
+                    "azure_agent_pipeline"
+                ]
+            },
+            {
+                "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742056841,
+                "lastSentence": "Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.",
+                "done": True
+            }
+        ],
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 43: 29 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 43: 29 USER_MESSAGE:  ### Task: 2025-03-15 18: 43: 29 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 ### **Instructions**: 2025-03-15 18: 43: 29 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 43: 29 2. Use `<type>` to guide your output: 2025-03-15 18: 43: 29    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 43: 29    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 43: 29 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 43: 29 4. Ensure the continuation: 2025-03-15 18: 43: 29    - Flows naturally from `<text>`.  
+2025-03-15 18: 43: 29    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 43: 29 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 ### **Output Rules**: 2025-03-15 18: 43: 29 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 ### **Examples**: 2025-03-15 18: 43: 29 #### Example 1: 2025-03-15 18: 43: 29 Input: 2025-03-15 18: 43: 29 <type>General</type>  
+2025-03-15 18: 43: 29 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 43: 29 Output: 2025-03-15 18: 43: 29 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 #### Example 2: 2025-03-15 18: 43: 29 Input: 2025-03-15 18: 43: 29 <type>Search Query</type>  
+2025-03-15 18: 43: 29 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 43: 29 Output: 2025-03-15 18: 43: 29 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 ---
+2025-03-15 18: 43: 29 ### Context: 2025-03-15 18: 43: 29 <chat_history>
+2025-03-15 18: 43: 29 USER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.
+2025-03-15 18: 43: 29 ASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν: 2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 - **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: 2025-03-15 18: 43: 29   - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.
+2025-03-15 18: 43: 29   - Διατίθεται για: 2025-03-15 18: 43: 29     - Γενικούς Πελάτες
+2025-03-15 18: 43: 29     - Προσωπικό ΕΤΕ και Θυγατρικών
+2025-03-15 18: 43: 29     - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.
+2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 - **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: 2025-03-15 18: 43: 29   - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.
+2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 - **Δάνεια με εμπράγματες εξασφαλίσεις**: 2025-03-15 18: 43: 29   - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.
+2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 - **Απαλλαγές από τις διευκολύνσεις**: 2025-03-15 18: 43: 29   - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.
+2025-03-15 18: 43: 29   - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".
+2025-03-15 18: 43: 29   - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.
+2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 Προϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5: 0†source】.
+2025-03-15 18: 43: 29 </chat_history>
+2025-03-15 18: 43: 29 <type>search query</type>  
+2025-03-15 18: 43: 29 <text>Ποιά είναι η διαδικασία για την </text>  
+2025-03-15 18: 43: 29 #### Output: 2025-03-15 18: 43: 29 
+2025-03-15 18: 43: 29 INFO: 192.168.65.1: 29438 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 43: 39 INFO: 192.168.65.1: 33198 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 43: 39 INFO: 192.168.65.1: 28703 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 43: 39 azure_agent_pipeline
+2025-03-15 18: 43: 39 azure_agent_pipeline
+2025-03-15 18: 43: 39 pipe:azure_agent_pipeline running
+2025-03-15 18: 43: 39 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες </text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες ",
+            "messages": [
+                {
+                    "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "parentId": None,
+                    "childrenIds": [
+                        "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                    ],
+                    "role": "user",
+                    "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                    "timestamp": 1742056841,
+                    "models": [
+                        "azure_agent_pipeline"
+                    ]
+                },
+                {
+                    "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                    "childrenIds": [],
+                    "role": "assistant",
+                    "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                    "model": "azure_agent_pipeline",
+                    "modelName": "Athena Agent",
+                    "modelIdx": 0,
+                    "userContext": None,
+                    "timestamp": 1742056841,
+                    "lastSentence": "Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.",
+                    "done": True
+                }
+            ],
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 43: 39 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες </text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 43: 39 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 43: 39 METADATA:  ====================
+2025-03-15 18: 43: 39 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες ",
+        "messages": [
+            {
+                "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "parentId": None,
+                "childrenIds": [
+                    "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                ],
+                "role": "user",
+                "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                "timestamp": 1742056841,
+                "models": [
+                    "azure_agent_pipeline"
+                ]
+            },
+            {
+                "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742056841,
+                "lastSentence": "Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.",
+                "done": True
+            }
+        ],
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 43: 39 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 43: 39 USER_MESSAGE:  ### Task: 2025-03-15 18: 43: 39 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 ### **Instructions**: 2025-03-15 18: 43: 39 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 43: 39 2. Use `<type>` to guide your output: 2025-03-15 18: 43: 39    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 43: 39    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 43: 39 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 43: 39 4. Ensure the continuation: 2025-03-15 18: 43: 39    - Flows naturally from `<text>`.  
+2025-03-15 18: 43: 39    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 43: 39 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 ### **Output Rules**: 2025-03-15 18: 43: 39 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 ### **Examples**: 2025-03-15 18: 43: 39 #### Example 1: 2025-03-15 18: 43: 39 Input: 2025-03-15 18: 43: 39 <type>General</type>  
+2025-03-15 18: 43: 39 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 43: 39 Output: 2025-03-15 18: 43: 39 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 #### Example 2: 2025-03-15 18: 43: 39 Input: 2025-03-15 18: 43: 39 <type>Search Query</type>  
+2025-03-15 18: 43: 39 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 43: 39 Output: 2025-03-15 18: 43: 39 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 ---
+2025-03-15 18: 43: 39 ### Context: 2025-03-15 18: 43: 39 <chat_history>
+2025-03-15 18: 43: 39 USER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.
+2025-03-15 18: 43: 39 ASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν: 2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 - **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: 2025-03-15 18: 43: 39   - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.
+2025-03-15 18: 43: 39   - Διατίθεται για: 2025-03-15 18: 43: 39     - Γενικούς Πελάτες
+2025-03-15 18: 43: 39     - Προσωπικό ΕΤΕ και Θυγατρικών
+2025-03-15 18: 43: 39     - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.
+2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 - **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: 2025-03-15 18: 43: 39   - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.
+2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 - **Δάνεια με εμπράγματες εξασφαλίσεις**: 2025-03-15 18: 43: 39   - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.
+2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 - **Απαλλαγές από τις διευκολύνσεις**: 2025-03-15 18: 43: 39   - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.
+2025-03-15 18: 43: 39   - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".
+2025-03-15 18: 43: 39   - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.
+2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 Προϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5: 0†source】.
+2025-03-15 18: 43: 39 </chat_history>
+2025-03-15 18: 43: 39 <type>search query</type>  
+2025-03-15 18: 43: 39 <text>Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες </text>  
+2025-03-15 18: 43: 39 #### Output: 2025-03-15 18: 43: 39 
+2025-03-15 18: 43: 39 INFO: 192.168.65.1: 23307 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 43: 46 INFO: 192.168.65.1: 65473 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 43: 46 INFO: 192.168.65.1: 62451 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 43: 46 azure_agent_pipeline
+2025-03-15 18: 43: 46 azure_agent_pipeline
+2025-03-15 18: 43: 46 pipe:azure_agent_pipeline running
+2025-03-15 18: 43: 46 BODY: {
+    "stream": False,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις</text>  \n#### Output:\n"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "task": "autocomplete_generation",
+        "task_body": {
+            "model": "azure_agent_pipeline",
+            "prompt": "Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις",
+            "messages": [
+                {
+                    "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "parentId": None,
+                    "childrenIds": [
+                        "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                    ],
+                    "role": "user",
+                    "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                    "timestamp": 1742056841,
+                    "models": [
+                        "azure_agent_pipeline"
+                    ]
+                },
+                {
+                    "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                    "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                    "childrenIds": [],
+                    "role": "assistant",
+                    "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                    "model": "azure_agent_pipeline",
+                    "modelName": "Athena Agent",
+                    "modelIdx": 0,
+                    "userContext": None,
+                    "timestamp": 1742056841,
+                    "lastSentence": "Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.",
+                    "done": True
+                }
+            ],
+            "type": "search query",
+            "stream": False
+        },
+        "chat_id": None
+    }
+}
+2025-03-15 18: 43: 46 MESSAGES: [
+    {
+        "role": "user",
+        "content": "### Task:\nYou are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  \n\n### **Instructions**:\n1. Analyze `<text>` for context and meaning.  \n2. Use `<type>` to guide your output:  \n   - **General**: Provide a natural, concise continuation.  \n   - **Search Query**: Complete as if generating a realistic search query.  \n3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  \n4. Ensure the continuation:\n   - Flows naturally from `<text>`.  \n   - Avoids repetition, overexplaining, or unrelated ideas.  \n5. If unsure, return: `{ "text": "" }`.  \n\n### **Output Rules**:\n- Respond only in JSON format: `{ "text": "<your_completion>" }`.\n\n### **Examples**:\n#### Example 1:  \nInput:  \n<type>General</type>  \n<text>The sun was setting over the horizon, painting the sky</text>  \nOutput:  \n{ "text": "with vibrant shades of orange and pink." }\n\n#### Example 2:  \nInput:  \n<type>Search Query</type>  \n<text>Top-rated restaurants in</text>  \nOutput:  \n{ "text": "New York City for Italian cuisine." }  \n\n---\n### Context:\n<chat_history>\nUSER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.\nASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.\n</chat_history>\n<type>search query</type>  \n<text>Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις</text>  \n#### Output:\n"
+    }
+]
+2025-03-15 18: 43: 46 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 43: 46 METADATA:  ====================
+2025-03-15 18: 43: 46 METADATA: {
+    "task": "autocomplete_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "prompt": "Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις",
+        "messages": [
+            {
+                "id": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "parentId": None,
+                "childrenIds": [
+                    "3d53d462-ca1a-4ba3-8b98-849ecc357e49"
+                ],
+                "role": "user",
+                "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                "timestamp": 1742056841,
+                "models": [
+                    "azure_agent_pipeline"
+                ]
+            },
+            {
+                "parentId": "78745f66-2fcd-492e-8acd-12dbde911adb",
+                "id": "3d53d462-ca1a-4ba3-8b98-849ecc357e49",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742056841,
+                "lastSentence": "Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.",
+                "done": True
+            }
+        ],
+        "type": "search query",
+        "stream": False
+    },
+    "chat_id": None
+}
+2025-03-15 18: 43: 46 USER_ID: None, CHAT_ID: None
+2025-03-15 18: 43: 46 USER_MESSAGE:  ### Task: 2025-03-15 18: 43: 46 You are an autocompletion system. Continue the text in `<text>` based on the **completion type** in `<type>` and the given language.  
+2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 ### **Instructions**: 2025-03-15 18: 43: 46 1. Analyze `<text>` for context and meaning.  
+2025-03-15 18: 43: 46 2. Use `<type>` to guide your output: 2025-03-15 18: 43: 46    - **General**: Provide a natural, concise continuation.  
+2025-03-15 18: 43: 46    - **Search Query**: Complete as if generating a realistic search query.  
+2025-03-15 18: 43: 46 3. Start as if you are directly continuing `<text>`. Do **not** repeat, paraphrase, or respond as a model. Simply complete the text.  
+2025-03-15 18: 43: 46 4. Ensure the continuation: 2025-03-15 18: 43: 46    - Flows naturally from `<text>`.  
+2025-03-15 18: 43: 46    - Avoids repetition, overexplaining, or unrelated ideas.  
+2025-03-15 18: 43: 46 5. If unsure, return: `{
+    "text": ""
+}`.  
+2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 ### **Output Rules**: 2025-03-15 18: 43: 46 - Respond only in JSON format: `{
+    "text": "<your_completion>"
+}`.
+2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 ### **Examples**: 2025-03-15 18: 43: 46 #### Example 1: 2025-03-15 18: 43: 46 Input: 2025-03-15 18: 43: 46 <type>General</type>  
+2025-03-15 18: 43: 46 <text>The sun was setting over the horizon, painting the sky</text>  
+2025-03-15 18: 43: 46 Output: 2025-03-15 18: 43: 46 {
+    "text": "with vibrant shades of orange and pink."
+}
+2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 #### Example 2: 2025-03-15 18: 43: 46 Input: 2025-03-15 18: 43: 46 <type>Search Query</type>  
+2025-03-15 18: 43: 46 <text>Top-rated restaurants in</text>  
+2025-03-15 18: 43: 46 Output: 2025-03-15 18: 43: 46 {
+    "text": "New York City for Italian cuisine."
+}  
+2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 ---
+2025-03-15 18: 43: 46 ### Context: 2025-03-15 18: 43: 46 <chat_history>
+2025-03-15 18: 43: 46 USER: Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.
+2025-03-15 18: 43: 46 ASSISTANT: Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν: 2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 - **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: 2025-03-15 18: 43: 46   - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.
+2025-03-15 18: 43: 46   - Διατίθεται για: 2025-03-15 18: 43: 46     - Γενικούς Πελάτες
+2025-03-15 18: 43: 46     - Προσωπικό ΕΤΕ και Θυγατρικών
+2025-03-15 18: 43: 46     - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.
+2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 - **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: 2025-03-15 18: 43: 46   - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.
+2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 - **Δάνεια με εμπράγματες εξασφαλίσεις**: 2025-03-15 18: 43: 46   - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.
+2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 - **Απαλλαγές από τις διευκολύνσεις**: 2025-03-15 18: 43: 46   - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.
+2025-03-15 18: 43: 46   - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".
+2025-03-15 18: 43: 46   - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.
+2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 Προϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5: 0†source】.
+2025-03-15 18: 43: 46 </chat_history>
+2025-03-15 18: 43: 46 <type>search query</type>  
+2025-03-15 18: 43: 46 <text>Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις</text>  
+2025-03-15 18: 43: 46 #### Output: 2025-03-15 18: 43: 46 
+2025-03-15 18: 43: 46 INFO: 192.168.65.1: 60563 - "POST /chat/completions HTTP/1.1"200 OK
+
+Second Question/Answer ========================================================================================================
+2025-03-15 18: 45: 14 INFO: 192.168.65.1: 37920 - "POST /azure_agent_pipeline/filter/inlet HTTP/1.1"200 OK
+2025-03-15 18: 45: 14 INFO: 192.168.65.1: 37003 - "GET /models HTTP/1.1"200 OK
+2025-03-15 18: 45: 14 azure_agent_pipeline
+2025-03-15 18: 45: 14 azure_agent_pipeline
+2025-03-15 18: 45: 14 INFO: 192.168.65.1: 35118 - "POST /chat/completions HTTP/1.1"200 OK
+2025-03-15 18: 45: 23 pipe:azure_agent_pipeline running
+2025-03-15 18: 45: 23 BODY: {
+    "stream": True,
+    "model": "azure_agent_pipeline",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα."
+        },
+        {
+            "role": "assistant",
+            "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】."
+        },
+        {
+            "role": "user",
+            "content": "Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις"
+        }
+    ],
+    "user": {
+        "name": "George Marinos",
+        "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "email": "giorgos.marinos@gmail.com",
+        "role": "admin"
+    },
+    "metadata": {
+        "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+        "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a",
+        "message_id": "2b8fa005-af78-4007-9bc2-e8423ccba18f",
+        "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+        "tool_ids": None,
+        "files": None,
+        "features": {
+            "image_generation": False,
+            "code_interpreter": False,
+            "web_search": False
+        },
+        "variables": {
+            "{{USER_NAME}}": "George Marinos",
+            "{{USER_LOCATION}}": "Unknown",
+            "{{CURRENT_DATETIME}}": "2025-03-15 18:45:14",
+            "{{CURRENT_DATE}}": "2025-03-15",
+            "{{CURRENT_TIME}}": "18:45:14",
+            "{{CURRENT_WEEKDAY}}": "Saturday",
+            "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+            "{{USER_LANGUAGE}}": "en-US"
+        },
+        "model": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            },
+            "openai": {
+                "id": "azure_agent_pipeline",
+                "name": "Athena Agent",
+                "object": "model",
+                "created": 1742056266,
+                "owned_by": "openai",
+                "pipeline": {
+                    "type": "pipe",
+                    "valves": True
+                }
+            },
+            "urlIdx": 1,
+            "actions": []
+        },
+        "direct": False
+    }
+}
+2025-03-15 18: 45: 23 MESSAGES: [
+    {
+        "role": "user",
+        "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα."
+    },
+    {
+        "role": "assistant",
+        "content": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】."
+    },
+    {
+        "role": "user",
+        "content": "Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις"
+    }
+]
+2025-03-15 18: 45: 23 USER: {
+    "name": "George Marinos",
+    "id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "email": "giorgos.marinos@gmail.com",
+    "role": "admin"
+}
+2025-03-15 18: 45: 23 METADATA:  ====================
+2025-03-15 18: 45: 23 METADATA: {
+    "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "chat_id": "87308bf7-8d30-4b11-8eb8-810ffbbf2d6a",
+    "message_id": "2b8fa005-af78-4007-9bc2-e8423ccba18f",
+    "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+    "tool_ids": None,
+    "files": None,
+    "features": {
+        "image_generation": False,
+        "code_interpreter": False,
+        "web_search": False
+    },
+    "variables": {
+        "{{USER_NAME}}": "George Marinos",
+        "{{USER_LOCATION}}": "Unknown",
+        "{{CURRENT_DATETIME}}": "2025-03-15 18:45:14",
+        "{{CURRENT_DATE}}": "2025-03-15",
+        "{{CURRENT_TIME}}": "18:45:14",
+        "{{CURRENT_WEEKDAY}}": "Saturday",
+        "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+        "{{USER_LANGUAGE}}": "en-US"
+    },
+    "model": {
+        "id": "azure_agent_pipeline",
+        "name": "Athena Agent",
+        "object": "model",
+        "created": 1742056266,
+        "owned_by": "openai",
+        "pipeline": {
+            "type": "pipe",
+            "valves": True
+        },
+        "openai": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            }
+        },
+        "urlIdx": 1,
+        "actions": []
+    },
+    "direct": False
+}
+2025-03-15 18: 45: 23 USER_ID: 8e3423df-a803-457a-aafa-10cc79c4a3ed, CHAT_ID: 87308bf7-8d30-4b11-8eb8-810ffbbf2d6a
+2025-03-15 18: 45: 23 USER_MESSAGE:  Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις
+2025-03-15 18: 45: 23 Using existing thread, thread ID: thread_hkgmXfff4VFkj0flkXwQY2Xp
+2025-03-15 18: 45: 23 Created message, message ID: msg_KugXGfUo6UY8sh8GBEZ83zDq
+2025-03-15 18: 45: 23 Run finished with status: RunStatus.COMPLETED
+2025-03-15 18: 45: 23 Messages: {
+    "object": "list",
+    "data": [
+        {
+            "id": "msg_ie4IcJjXEuyLyQ9xgMI5ahZz",
+            "object": "thread.message",
+            "created_at": 1742057118,
+            "assistant_id": "asst_31PXRzUQe6Oko4qPoU6L4XHM",
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": "run_6ZXXIvnbA1aWj6GcQmk1ZXJW",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις περιλαμβάνει τα εξής βήματα:\n\n1. **Αρχική υποβολή αίτησης**:\n   - Ο πελάτης υποβάλλει αίτηση για το δάνειο.\n\n2. **Έλεγχος πιστοληπτικής ικανότητας**:\n   - Καταγράφονται και ελέγχονται οι όροι πιστοποίησης και επαλήθευσης της ταυτότητας του πελάτη.\n\n3. **Ανάθεση Τεχνικού Ελέγχου**:\n   - Ο τεχνικός έλεγχος ανατίθεται σε συνεργαζόμενο εκτιμητή.\n\n4. **Διενέργεια Τεχνικού Ελέγχου**:\n   - Πραγματοποιείται ο τεχνικός έλεγχος του ακινήτου, για το οποίο ζητείται η εμπράγματη εξασφάλιση.\n\n5. **Νομικός Έλεγχος**:\n   - Ανάθεση και διενέργεια νομικού ελέγχου για τον έλεγχο των νομικών θεμάτων που συνδέονται με το ακίνητο.\n\n6. **Αξιολόγηση αίτησης**:\n   - Μετά την ολοκλήρωση των ελέγχων, η αίτηση επεξεργάζεται και αξιολογείται από τον Τομέα Εγκρίσεων.\n\n7. **Υπογραφή Σύμβασης**:\n   - Ο πελάτης υπογράφει τη σύμβαση για το δάνειο.\n\n8. **Εκταμίευση Δανείου**:\n   - Μετά την υπογραφή, πραγματοποιείται η εκταμίευση του δανείου στον πελάτη【9:3†source】.",
+                        "annotations": [
+                            {
+                                "type": "url_citation",
+                                "text": "【9:3†source】",
+                                "start_index": 997,
+                                "end_index": 1009,
+                                "url_citation": {
+                                    "url": "Καταχώρηση Αιτήματος Προϊόντος ΑΡΣΗ ΒΑΡΩΝ.txt",
+                                    "title": "Καταχώρηση Αιτήματος Προϊόντος ΑΡΣΗ ΒΑΡΩΝ.txt"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_KugXGfUo6UY8sh8GBEZ83zDq",
+            "object": "thread.message",
+            "created_at": 1742057116,
+            "assistant_id": None,
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Ποιά είναι η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_469jnDHGvCUgXSp2VNLkcLse",
+            "object": "thread.message",
+            "created_at": 1742056846,
+            "assistant_id": "asst_31PXRzUQe6Oko4qPoU6L4XHM",
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": "run_uQPMTzW74ahtO8wFEweZl7tS",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Τα διαθέσιμα καταναλωτικά δανειακά προϊόντα περιλαμβάνουν:\n\n- **Προϊόν ΑΡΣΗ ΒΑΡΩΝ**: \n  - Δίνεται η δυνατότητα συγκέντρωσης οφειλών σε ένα δάνειο με μία μηνιαία δόση.\n  - Διατίθεται για:\n    - Γενικούς Πελάτες\n    - Προσωπικό ΕΤΕ και Θυγατρικών\n    - Δανειολήπτες που έχουν συμπληρώσει το 70ο έτος ηλικίας.\n\n- **Προσωπικό Δάνειο με Εξασφάλιση Ρευστοποιήσιμων Στοιχείων**: \n  - Συνδέεται με ρευστοποιήσιμα στοιχεία, όπως καταθέσεις σε ευρώ και ασφαλιστικά προϊόντα εγγυημένου κεφαλαίου.\n\n- **Δάνεια με εμπράγματες εξασφαλίσεις**:\n  - Προβλέπεται με προσημείωση υποθήκης ή ενεχύρου για προϊόντα διευκόλυνσης ενήμερων οφειλών.\n\n- **Απαλλαγές από τις διευκολύνσεις**:\n  - Δανειακά προϊόντα για χρηματοδότηση αγοράς τραπεζοασφαλιστικών προϊόντων.\n  - Δάνεια τύπου "Εξοικονόμηση κατ’ Οίκον" και "Φροντίζω".\n  - Δάνεια αναχρηματοδότησης οφειλών Καταναλωτικής Πίστης.\n\nΠροϊόντα που εξαιρούνται από τη διευκόλυνση περιλαμβάνουν ειδικές κατηγορίες δανείων όπως δάνεια σε ελβετικό φράγκο και προγράμματα αναδιάρθρωσης【5:0†source】.",
+                        "annotations": [
+                            {
+                                "type": "url_citation",
+                                "text": "【5:0†source】",
+                                "start_index": 1006,
+                                "end_index": 1018,
+                                "url_citation": {
+                                    "url": "J497_001_2023-Καταχώρηση Αιτήματος Προϊόντος ΑΡΣΗ ΒΑΡΩΝ-ΜΕΣΩ ΚΑΤΑΣΤΗΜΑΤΟΣ_WF.docx",
+                                    "title": "J497_001_2023-Καταχώρηση Αιτήματος Προϊόντος ΑΡΣΗ ΒΑΡΩΝ-ΜΕΣΩ ΚΑΤΑΣΤΗΜΑΤΟΣ_WF.docx"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_wclfWzsgSOMXXMh4vTRyfCvR",
+            "object": "thread.message",
+            "created_at": 1742056843,
+            "assistant_id": None,
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Ποιά είναι τα διαθέσιμα καταναλωτικά δανειακά προϊόντα.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_UjOmhOGmzhDu5qmYFMxM7hkI",
+            "object": "thread.message",
+            "created_at": 1742056338,
+            "assistant_id": "asst_31PXRzUQe6Oko4qPoU6L4XHM",
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": "run_hzaTTYzEFB1kkmryRZ78KtPm",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Δεν ξέρω.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_XyPUGR1HhK1CW3rjqjI6V7H5",
+            "object": "thread.message",
+            "created_at": 1742056336,
+            "assistant_id": None,
+            "thread_id": "thread_hkgmXfff4VFkj0flkXwQY2Xp",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Ποιά είναι τα διαθέσιμα καταναλωτικά προϊόντα",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        }
+    ],
+    "first_id": "msg_ie4IcJjXEuyLyQ9xgMI5ahZz",
+    "last_id": "msg_XyPUGR1HhK1CW3rjqjI6V7H5",
+    "has_more": False
+}
+2025-03-15 18: 45: 23 Last Message: Η διαδικασία για την χορήγηση δανείου με εμπράγματες εξασφαλίσεις περιλαμβάνει τα εξής βήματα: 2025-03-15 18: 45: 23 
+2025-03-15 18: 45: 23 1. **Αρχική υποβολή αίτησης**: 2025-03-15 18: 45: 23    - Ο πελάτης υποβάλλει αίτηση για το δάνειο.
+2025-03-15 18: 45: 23 
+2025-03-15 18: 45: 23 2. **Έλεγχος πιστοληπτικής ικανότητας**: 2025-03-15 18: 45: 23    - Καταγράφονται και ελέγχονται οι όροι πιστοποίησης και επαλήθευσης της ταυτότητας του πελάτη.
+2025-03-15 18: 45: 23 
+2025-03-15 18: 45: 23 3. **Ανάθεση Τεχνικού Ελέγχου**: 2025-03-15 18: 45: 23    - Ο τεχνικός έλεγχος ανατίθεται σε συνεργαζόμενο εκτιμητή.
+2025-03-15 18: 45: 23 
+2025-03-15 18: 45: 23 4. **Διενέργεια Τεχνικού Ελέγχου**: 2025-03-15 18: 45: 23    - Πραγματοποιείται ο τεχνικός έλεγχος του ακινήτου, για το οποίο ζητείται η εμπράγματη εξασφάλιση.
+2025-03-15 18: 45: 23 
+2025-03-15 18: 45: 23 5. **Νομικός Έλεγχος**: 2025-03-15 18: 45: 23    - Ανάθεση και διενέργεια νομικού ελέγχου για τον έλεγχο των νομικών θεμάτων που συνδέονται με το ακίνητο.
+2025-03-15 18: 45: 23 
+2025-03-15 18: 45: 23 6. **Αξιολόγηση αίτησης**: 2025-03-15 18: 45: 23    - Μετά την ολοκλήρωση των ελέγχων, η αίτηση επεξεργάζεται και αξιολογείται από τον Τομέα Εγκρίσεων.
+2025-03-15 18: 45: 23 
+2025-03-15 18: 45: 23 7. **Υπογραφή Σύμβασης**: 2025-03-15 18: 45: 23    - Ο πελάτης υπογράφει τη σύμβαση για το δάνειο.
+2025-03-15 18: 45: 23 
+2025-03-15 18: 45: 23 8. **Εκταμίευση Δανείου**: 2025-03-15 18: 45: 23    - Μετά την υπογραφή, πραγματοποιείται η εκταμίευση του δανείου στον πελάτη【9: 3†source】.
+2025-03-15 18: 45: 23 INFO: 192.168.65.1: 64217 - "POST /azure_agent_pipeline/filter/outlet HTTP/1.1"200 OK

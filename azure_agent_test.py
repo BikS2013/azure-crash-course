@@ -9,11 +9,10 @@ if __name__ == "__main__":
     subscription_id = os.getenv("AZURE_SUBSCRIPTION_ID")
     client_id = os.getenv("AZURE_CLIENT_ID")
     client_secret = os.getenv("AZURE_CLIENT_SECRET")
+    con_str = os.getenv("AZURE_CONNECTION_STRING")
 
 
     credential = ClientSecretCredential(tenant_id, client_id, client_secret)
-
-    con_str = "eastus2.api.azureml.ms;51dfc225-0c48-4bf4-bbcc-ce78272befc5;bikstestrg;biks-rag"
 
     project_client = AIProjectClient.from_connection_string(credential=credential, conn_str=con_str)
 
@@ -22,10 +21,11 @@ if __name__ == "__main__":
     message = project_client.agents.create_message(
         thread_id=thread.id,
         role="user",
-        content="tell me a story",
+        content="Ποιές είναι οι προϋποθέσεις για την έκδοση διαταγής πληρωμής",
     )
 
-    agent_id = "asst_BbBpU1oBAvuZn48oslKzyvLH"
+    agent_id = os.getenv("AZURE_AGENT_ID")
+    
     run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent_id)
 
     print(f"Run finished with status: {run.status}")

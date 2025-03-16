@@ -1,0 +1,129 @@
+2025-03-16 01: 07: 27 AGENT RESPONSE MESSAGES: {
+    "object": "list",
+    "data": [
+        {
+            "id": "msg_ItKQwBPe85embMmw6V5YuIKP",
+            "object": "thread.message",
+            "created_at": 1742080044,
+            "assistant_id": "asst_tjxukn3v5ID1VcaBlBgtHBCC",
+            "thread_id": "thread_jsFeYkqnxHaRwOfwjpdO67kU",
+            "run_id": "run_Okrct75mAkTVCZdC2N6nODgJ",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Οι προϋποθέσεις για την έκδοση διαταγής πληρωμής είναι:\n\n- Η απαίτηση πρέπει να είναι βέβαιη και εκκαθαρισμένη, δηλαδή να είναι σαφώς καθορισμένη ως προς το ποσό και τη νόμιμη βάση της.\n- Επίδοση εξώδικης όχλησης προς τον οφειλέτη.\n- Δεν είναι αναγκαία η προφορική ακρόαση ή η δικαστική συζήτηση, δεδομένου ότι τα δικαιολογητικά έγγραφα είναι επαρκή για την εξέταση του δικαστή.\n- Η διαταγή πληρωμής εκδίδεται με βάση έγγραφα που αποδεικνύουν την απαίτηση, όπως συμβάσεις ή τιμολόγια.\n\nΠηγή: 【5: -1†source】.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_IwDxgf8IPcgc90d9k8pVqtj1",
+            "object": "thread.message",
+            "created_at": 1742080043,
+            "assistant_id": None,
+            "thread_id": "thread_jsFeYkqnxHaRwOfwjpdO67kU",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "ποιές είναι οι προϋποθέσεις για την έκδοση διαταγής πληρωμής ?",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_ooa4saygCzUDaSQGorX68a7B",
+            "object": "thread.message",
+            "created_at": 1742080016,
+            "assistant_id": "asst_tjxukn3v5ID1VcaBlBgtHBCC",
+            "thread_id": "thread_jsFeYkqnxHaRwOfwjpdO67kU",
+            "run_id": "run_4UPcMtabbjJcNHkjVHuKKifd",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Οι προϋποθέσεις για την έκδοση διαταγής πληρωμής περιλαμβάνουν:\n\n- Το βέβαιο και εκκαθαρισμένο της απαίτησης, δηλαδή η απαίτηση πρέπει να είναι καθορισμένη και σαφής τόσο ως προς το ποσό όσο και ως προς τη νόμιμη βάση της.\n- Προϋπάρχουσα όχληση του οφειλέτη ώστε να πληρώσει ή να τηρήσει τους συμβατικούς όρους.\n- Επίδοση εξώδικης πρόσκλησης και σε περίπτωση μη τήρησης, καταγγελία της σχετικής δανειακής ή πιστωτικής σύμβασης.\n- Η διαταγή πληρωμής μπορεί να εκδοθεί ακόμα και για μέρος της απαιτήσεως από το αρμόδιο δικαστήριο【5: -1†source】【5: -1†source】【5: -1†source】.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_WJrXolmLifJL1T8QzdMfV6o2",
+            "object": "thread.message",
+            "created_at": 1742080014,
+            "assistant_id": None,
+            "thread_id": "thread_jsFeYkqnxHaRwOfwjpdO67kU",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "ποιές είναι οι προϋποθέσεις για την έκδοση διαταγής πληρωμής ?",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_FXu0SFQ5ljSfIxe3bZN7KaPA",
+            "object": "thread.message",
+            "created_at": 1742080004,
+            "assistant_id": "asst_tjxukn3v5ID1VcaBlBgtHBCC",
+            "thread_id": "thread_jsFeYkqnxHaRwOfwjpdO67kU",
+            "run_id": "run_tjEHlHdZSYHVPi1zLl2yEz1E",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Δεν έχω πληροφορίες για τις προϋποθέσεις έκδοσης διαταγής πληρωμής στις πηγές μου.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        },
+        {
+            "id": "msg_ckA2q0WrK3xdWhXN5MXyX12u",
+            "object": "thread.message",
+            "created_at": 1742080003,
+            "assistant_id": None,
+            "thread_id": "thread_jsFeYkqnxHaRwOfwjpdO67kU",
+            "run_id": None,
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "ποιές είναι οι προϋποθέσεις για την έκδοση διαταγής πληρωμής ?",
+                        "annotations": []
+                    }
+                }
+            ],
+            "attachments": [],
+            "metadata": {}
+        }
+    ],
+    "first_id": "msg_ItKQwBPe85embMmw6V5YuIKP",
+    "last_id": "msg_ckA2q0WrK3xdWhXN5MXyX12u",
+    "has_more": False
+}
+2025-03-16 01: 07: 27 INFO: 192.168.65.1: 34470 - "POST /azure_legal_agent/filter/outlet HTTP/1.1"200 OK

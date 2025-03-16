@@ -17,18 +17,16 @@ from tenacity import retry, stop_after_attempt, wait_random_exponential
 class Identity:
 
     tenant_id: str
-    subscription_id: str
     client_id: str
     client_secret: str
     credential: ClientSecretCredential
 
     subscription_client: SubscriptionClient
 
-    def __init__(self, tenant_id, subscription_id, client_id, client_secret):
+    def __init__(self, tenant_id, client_id, client_secret):
         self.client_id = client_id
         self.client_secret = client_secret
         self.tenant_id = tenant_id
-        self.subscription_id = subscription_id       
         self.credential = ClientSecretCredential(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
         self.subscription_client = SubscriptionClient(self.credential)
     
@@ -100,10 +98,8 @@ class Subscription:
     def get_storage_accounts(self) -> list[azstm.StorageAccount]:
         accounts = list(self.storage_client.storage_accounts.list())
         return accounts
-    
                 
 import azure.mgmt.resource.resources.models as azrm
-
 class ResourceGroup:
     azure_resource_group: azrm.ResourceGroup
     subscription: Subscription
@@ -189,10 +185,6 @@ class StorageAccount:
         client = self.get_blob_service_client()
         container_client = client.get_container_client(container_name)
         
-
-    
-
-
 import azure.search.documents.indexes as azsdi
 import azure.search.documents.indexes.models as azsdim
 from azure.core.credentials import AzureKeyCredential
@@ -246,7 +238,6 @@ class SearchService:
     def create_or_update_index(self, index_name: str, fields: List[azsdim.SearchField])->"SearchIndex":
         return SearchIndex(self, index_name, fields)
     
-    
     def add_semantic_configuration(self,
                                   title_field: str = "title",
                                   content_fields: List[str] = None,
@@ -298,6 +289,43 @@ class SearchService:
         # Update the index
         result = self.get_index_client().create_or_update_index(index)
         return result
+
+def get_std_vector_search( connections_per_node:int = 4, 
+                          neighbors_list_size: int = 400, 
+                          search_list_size: int = 500, 
+                          metric: str = "cosine") -> azsdim.VectorSearch:
+    """
+    Get a standard vector search configuration.
+    Args:
+        connections_per_node: Number of connections per node. Default is 4.
+        neighbors_list_size: Size of the dynamic list for nearest neighbors. Default is 400.
+        search_list_size: Size of the dynamic list for searching. Default is 500.
+        metric: Distance metric (cosine, euclidean, dotProduct). Default is cosine.
+    Returns:
+        A vector search configuration
+    """
+    # Define vector search configuration
+    vector_search = azsdim.VectorSearch(
+        algorithms=[
+            azsdim.VectorSearchAlgorithmConfiguration(
+                name="default-algorithm",
+                kind="hnsw",
+                hnsw_parameters=azsdim.HnswParameters(
+                    m=4,  # Number of connections per node
+                    ef_construction=400,  # Size of the dynamic list for nearest neighbors
+                    ef_search=500,  # Size of the dynamic list for searching
+                    metric="cosine"  # Distance metric (cosine, euclidean, dotProduct)
+                )
+            )
+        ],
+        profiles=[
+            azsdim.VectorSearchProfile(
+                name="default-profile",
+                algorithm_configuration_name="default-algorithm"
+            )
+        ]
+    )
+    return vector_search
 class SearchIndex:
     index_name: str
     fields: List[azsdim.SearchField]
@@ -326,6 +354,25 @@ class SearchIndex:
                 credential=self.search_service.get_credential()
             )
         return search_client
+    
+    def perform_search(self, fields_to_select:str="*", highlight_fields:str="content", filter_expression:str=None, top:int=10,
+                       query_text:str=None, search_options:Dict[str, Any]=None) -> azsd.SearchItemPaged[Dict]:
+        search_options = {
+            "include_total_count": True,
+            "select": fields_to_select,
+            "highlight_fields": highlight_fields,
+            "highlight_pre_tag": "<b>",
+            "highlight_post_tag": "</b>"
+        }
+        if filter_expression:
+            search_options["filter"] = filter_expression
+        if top:
+            search_options["top"] = top
+        search_client = self.get_search_client()
+        results = search_client.search(query_text, **search_options)
+        return results
+    
+
 
     def perform_hybrid_search(self,
                              query_text: str,
@@ -338,7 +385,7 @@ class SearchIndex:
         Perform a hybrid search combining traditional keyword search with vector search.
         Args:
             query_text: The search query text
-            vector_fields: List of fields to perform vector search on (default: ["content_vector"])
+            vector_fields: List of fields to perform vector search on (default: ["text_vector"])
             search_options: Additional search options
             use_semantic_search: Whether to use semantic search capabilities
             semantic_config_name: The name of the semantic configuration to use
@@ -388,7 +435,6 @@ class SearchIndex:
         return processed_results
     
 
-
 from openai import AzureOpenAI
 def get_embedding_client( api_key: str, api_base: str, api_version: str) : 
     client = AzureOpenAI(
@@ -416,10 +462,10 @@ if __name__ == "__main__":
     client_id = os.getenv("AZURE_CLIENT_ID")
     client_secret = os.getenv("AZURE_CLIENT_SECRET")
     
-    group_name = os.getenv("RESOURCE_GROUP_NAME")
-    storage_account_name = os.getenv("STORAGE_ACCOUNT_NAME")
-    location = os.getenv("RESOURCE_LOCATION")
-    index_name = os.getenv("INDEX_NAME")
+    group_name = os.getenv("AZURE_RESOURCE_GROUP_NAME")
+    storage_account_name = os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
+    location = os.getenv("AZURE_RESOURCE_LOCATION")
+    index_name = os.getenv("AZURE_INDEX_NAME")
     
     # For OpenAI API (you would need to add these to your .env file)
     openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -429,7 +475,7 @@ if __name__ == "__main__":
     azure_openai_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
     azure_embedding_model = os.getenv("AZURE_EMBEDDING_MODEL")
 
-    identity = Identity(tenant_id, subscription_id, client_id, client_secret)
+    identity = Identity(tenant_id, client_id, client_secret)
     subscription = identity.get_subscription(subscription_id=subscription_id)
     resource_group = subscription.get_resource_group(group_name)
 
@@ -469,40 +515,18 @@ if __name__ == "__main__":
     print(f"Search service endpoint: {search_service.get_service_endpoint()}")
     
     # Define vector search configuration
-    vector_search = azsdim.VectorSearch(
-        algorithms=[
-            azsdim.VectorSearchAlgorithmConfiguration(
-                name="default-algorithm",
-                kind="hnsw",
-                hnsw_parameters=azsdim.HnswParameters(
-                    m=4,  # Number of connections per node
-                    ef_construction=400,  # Size of the dynamic list for nearest neighbors
-                    ef_search=500,  # Size of the dynamic list for searching
-                    metric="cosine"  # Distance metric (cosine, euclidean, dotProduct)
-                )
-            )
-        ],
-        profiles=[
-            azsdim.VectorSearchProfile(
-                name="default-profile",
-                algorithm_configuration_name="default-algorithm"
-            )
-        ]
-    )
+    vector_search = get_std_vector_search()
     
     # Define the index fields
     fields = [
-        azsdim.SimpleField(name="id", type=azsdim.SearchFieldDataType.String, key=True),
+        azsdim.SimpleField(name="chunk_id", type=azsdim.SearchFieldDataType.String, key=True),
+        azsdim.SearchableField(name="chunck", type=azsdim.SearchFieldDataType.String, analyzer_name="en.lucene"),
         azsdim.SearchableField(name="title", type=azsdim.SearchFieldDataType.String, analyzer_name="en.lucene"),
-        azsdim.SimpleField(name="title_vector", type=azsdim.SearchFieldDataType.Collection(azsdim.SearchFieldDataType.Single),
+        azsdim.SimpleField(name="text_vector", type=azsdim.SearchFieldDataType.Collection(azsdim.SearchFieldDataType.Single),
                            vector_search_dimensions=1536,
                            vector_search_profile_name="default-profile"),
-        azsdim.SearchableField(name="content", type=azsdim.SearchFieldDataType.String, analyzer_name="en.lucene"),
-        azsdim.SimpleField(name="content_vector", type=azsdim.SearchFieldDataType.Collection(azsdim.SearchFieldDataType.Single),
-                           vector_search_dimensions=1536,
-                           vector_search_profile_name="default-profile"),
-        azsdim.SearchableField(name="category", type=azsdim.SearchFieldDataType.String, filterable=True, facetable=True),
-        azsdim.SimpleField(name="timestamp", type=azsdim.SearchFieldDataType.DateTimeOffset, filterable=True, sortable=True)
+        azsdim.SearchableField(name="url", type=azsdim.SearchFieldDataType.String, analyzer_name="en.lucene"),
+        azsdim.SearchableField(name="name", type=azsdim.SearchFieldDataType.String, analyzer_name="en.lucene"),
     ]
     
     # Create the index with vector search configuration

@@ -1,0 +1,161 @@
+2025-03-15 18: 32: 20 METADATA: {
+    "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "chat_id": "49f64656-f019-45e7-8c45-d3367c1c96a6",
+    "message_id": "6a1d387a-7cb2-4801-a227-62fe222a30ba",
+    "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+    "tool_ids": None,
+    "files": None,
+    "features": {
+        "image_generation": False,
+        "code_interpreter": False,
+        "web_search": False
+    },
+    "variables": {
+        "{{USER_NAME}}": "George Marinos",
+        "{{USER_LOCATION}}": "Unknown",
+        "{{CURRENT_DATETIME}}": "2025-03-15 18:32:13",
+        "{{CURRENT_DATE}}": "2025-03-15",
+        "{{CURRENT_TIME}}": "18:32:13",
+        "{{CURRENT_WEEKDAY}}": "Saturday",
+        "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+        "{{USER_LANGUAGE}}": "en-US"
+    },
+    "model": {
+        "id": "azure_agent_pipeline",
+        "name": "Athena Agent",
+        "object": "model",
+        "created": 1742056266,
+        "owned_by": "openai",
+        "pipeline": {
+            "type": "pipe",
+            "valves": True
+        },
+        "openai": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            }
+        },
+        "urlIdx": 1,
+        "actions": []
+    },
+    "direct": False,
+    "task": "title_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "messages": [
+            {
+                "id": "d362da96-f197-43d6-b695-566ed9f4e705",
+                "parentId": None,
+                "childrenIds": [
+                    "6a1d387a-7cb2-4801-a227-62fe222a30ba"
+                ],
+                "role": "user",
+                "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά προϊόντα",
+                "timestamp": 1742056333,
+                "models": [
+                    "azure_agent_pipeline"
+                ]
+            },
+            {
+                "parentId": "d362da96-f197-43d6-b695-566ed9f4e705",
+                "id": "6a1d387a-7cb2-4801-a227-62fe222a30ba",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Δεν ξέρω.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742056333
+            }
+        ],
+        "chat_id": "49f64656-f019-45e7-8c45-d3367c1c96a6"
+    }
+}
+
+2025-03-15 18: 32: 20 METADATA: {
+    "user_id": "8e3423df-a803-457a-aafa-10cc79c4a3ed",
+    "chat_id": "49f64656-f019-45e7-8c45-d3367c1c96a6",
+    "message_id": "6a1d387a-7cb2-4801-a227-62fe222a30ba",
+    "session_id": "Czjy7Y-lxlZRX8lmAAAN",
+    "tool_ids": None,
+    "files": None,
+    "features": {
+        "image_generation": False,
+        "code_interpreter": False,
+        "web_search": False
+    },
+    "variables": {
+        "{{USER_NAME}}": "George Marinos",
+        "{{USER_LOCATION}}": "Unknown",
+        "{{CURRENT_DATETIME}}": "2025-03-15 18:32:13",
+        "{{CURRENT_DATE}}": "2025-03-15",
+        "{{CURRENT_TIME}}": "18:32:13",
+        "{{CURRENT_WEEKDAY}}": "Saturday",
+        "{{CURRENT_TIMEZONE}}": "Europe/Athens",
+        "{{USER_LANGUAGE}}": "en-US"
+    },
+    "model": {
+        "id": "azure_agent_pipeline",
+        "name": "Athena Agent",
+        "object": "model",
+        "created": 1742056266,
+        "owned_by": "openai",
+        "pipeline": {
+            "type": "pipe",
+            "valves": True
+        },
+        "openai": {
+            "id": "azure_agent_pipeline",
+            "name": "Athena Agent",
+            "object": "model",
+            "created": 1742056266,
+            "owned_by": "openai",
+            "pipeline": {
+                "type": "pipe",
+                "valves": True
+            }
+        },
+        "urlIdx": 1,
+        "actions": []
+    },
+    "direct": False,
+    "task": "tags_generation",
+    "task_body": {
+        "model": "azure_agent_pipeline",
+        "messages": [
+            {
+                "id": "d362da96-f197-43d6-b695-566ed9f4e705",
+                "parentId": None,
+                "childrenIds": [
+                    "6a1d387a-7cb2-4801-a227-62fe222a30ba"
+                ],
+                "role": "user",
+                "content": "Ποιά είναι τα διαθέσιμα καταναλωτικά προϊόντα",
+                "timestamp": 1742056333,
+                "models": [
+                    "azure_agent_pipeline"
+                ]
+            },
+            {
+                "parentId": "d362da96-f197-43d6-b695-566ed9f4e705",
+                "id": "6a1d387a-7cb2-4801-a227-62fe222a30ba",
+                "childrenIds": [],
+                "role": "assistant",
+                "content": "Δεν ξέρω.",
+                "model": "azure_agent_pipeline",
+                "modelName": "Athena Agent",
+                "modelIdx": 0,
+                "userContext": None,
+                "timestamp": 1742056333
+            }
+        ],
+        "chat_id": "49f64656-f019-45e7-8c45-d3367c1c96a6"
+    }
+}
