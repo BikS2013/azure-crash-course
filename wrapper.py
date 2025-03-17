@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import Any, List, Dict, Optional, Union
 import os
 from dotenv import load_dotenv
@@ -12,7 +13,7 @@ import azure.mgmt.resource.subscriptions.models as azsbm
 from azure.mgmt.search import SearchManagementClient
 import azure.mgmt.search.models as azsrm
 import azure.search.documents as azsd
-from azure.search.documents.models import VectorizedQuery, VectorizableTextQuery
+from azure.search.documents.models import VectorizedQuery, VectorizableTextQuery, QueryType
 from tenacity import retry, stop_after_attempt, wait_random_exponential
 class Identity:
 
@@ -355,7 +356,7 @@ class SearchIndex:
             )
         return search_client
     
-    def perform_search(self, fields_to_select:str="*", highlight_fields:str="content", filter_expression:str=None, top:int=10,
+    def perform_search(self, fields_to_select:str="*", highlight_fields:str="chunk", filter_expression:str=None, top:int=10,
                        query_text:str=None, search_options:Dict[str, Any]=None) -> azsd.SearchItemPaged[Dict]:
         search_options = {
             "include_total_count": True,
@@ -372,7 +373,147 @@ class SearchIndex:
         results = search_client.search(query_text, **search_options)
         return results
     
+    def get_adjacent_chunks(self, all_chunks: List[Dict]) -> List[Dict]:
+        # Organize chunks by parent_id
+        parent_chunks = defaultdict(list)
+        for chunk in all_chunks:
+            if 'parent_id' in chunk and 'chunk_id' in chunk:
+                parent_chunks[chunk['parent_id']].append(chunk)
+        
+        all_chunks_by_parent = {}
+        chunk_position_map = {}
+        # Sort chunks within each parent document and create position maps
+        for parent_id, chunks in parent_chunks.items():
+            # Try to sort chunks within each parent document
+            try:
+                # First try to sort by chunk_id if it contains a number
+                def extract_number(chunk):
+                    chunk_id = chunk.get('chunk_id', '')
+                    # Try to extract a number from the chunk_id
+                    if '_' in chunk_id:
+                        parts = chunk_id.split('_')
+                        if parts[-1].isdigit():
+                            return int(parts[-1])
+                    if chunk_id.isdigit():
+                        return int(chunk_id)
+                    return chunk_id  # Fall back to string sorting
+                
+                sorted_chunks = sorted(chunks, key=extract_number)
+            except:
+                # If sorting fails, keep the original order
+                sorted_chunks = chunks
+            
+            # Store the sorted chunks
+            all_chunks_by_parent[parent_id] = sorted_chunks
+            
+            # Create a position map for quick lookup
+            for i, chunk in enumerate(sorted_chunks):
+                chunk_position_map[(parent_id, chunk['chunk_id'])] = i
+            
+        return all_chunks_by_parent, chunk_position_map
 
+    def search_with_context_window(self,
+                             query_text: str,
+                             query_vector: List[float],
+                             vector_fields: str = None,
+                             search_options: Dict[str, Any] = None,
+                             use_semantic_search: bool = False,
+                             semantic_config_name: str = "default-semantic-config",
+                             top: int = 10,
+                             window_size=3):
+        """
+        Perform a search and retrieve a window of context chunks around each result.
+        
+        Args:
+            query_text (str): The search query text
+            window_size (int): Number of chunks to include before and after each result
+            semantic_enabled (bool): Whether to enable semantic search
+            top_k (int): Number of results to return
+            vector_fields (list): List of vector fields to search
+            text_fields (list): List of text fields to search
+            filter_condition (str): Optional OData filter condition
+            
+        Returns:
+            list: Search results enriched with context windows
+        """
+        # Get initial search results
+        results = self.perform_hybrid_search(query_text=query_text, 
+                                        query_vector=query_vector, 
+                                        vector_fields=vector_fields, 
+                                        use_semantic_search=use_semantic_search,
+                                        top=top,
+                                        semantic_config_name=semantic_config_name)
+        
+        if not results:
+            return []
+        
+        # Collect all parent_ids from the results
+        parent_ids = set()
+        for result in results:
+            if 'parent_id' in result:
+                parent_ids.add(result['parent_id'])
+        
+        # Batch retrieve all chunks for all parent documents
+        if parent_ids:
+            # Create a filter to get all chunks from all parent documents in one query
+            parent_filter = " or ".join([f"parent_id eq '{pid}'" for pid in parent_ids])
+            
+            search_options = {
+                "include_total_count": True,
+                "select": "*"
+            }
+            # Retrieve all chunks (up to a reasonable limit)
+            all_chunks = list(self.perform_search("*", 
+                                                  filter_expression=parent_filter,
+                                                  top=1000,  # Adjust based on your needs
+                                                  search_options=search_options))
+            
+            # Group chunks by parent_id
+            all_chunks_by_parent, chunk_position_map = self.get_adjacent_chunks(all_chunks)
+        
+        # Enrich results with context windows
+        enriched_results = []
+        for result in results:
+            parent_id = result.get('parent_id')
+            chunk_id = result.get('chunk_id')
+            
+            # Initialize empty context window
+            context_window = {
+                'before': [],
+                'after': []
+            }
+            
+            if parent_id and chunk_id and parent_id in all_chunks_by_parent:
+                parent_chunks = all_chunks_by_parent[parent_id]
+                
+                # Find the position of this chunk
+                position = chunk_position_map.get((parent_id, chunk_id))
+                
+                if position is not None:
+                    # Get previous chunks (up to window_size)
+                    start_idx = max(0, position - window_size)
+                    context_window['before'] = parent_chunks[start_idx:position]
+                    
+                    # Get next chunks (up to window_size)
+                    end_idx = min(len(parent_chunks), position + window_size + 1)
+                    context_window['after'] = parent_chunks[position+1:end_idx]
+            
+            enriched_result = {
+                'result': result,
+                'context_window': context_window
+            }
+            
+            enriched_results.append(enriched_result)
+        
+        results_return = []
+        for result in enriched_results:
+            results_return.append(result['result'])
+            for chunk in result['context_window']['before']:
+                results_return.append(chunk)
+            for chunk in result['context_window']['after']:
+                results_return.append(chunk)
+
+        return results_return
 
     def perform_hybrid_search(self,
                              query_text: str,
@@ -380,6 +521,7 @@ class SearchIndex:
                              vector_fields: str = None,
                              search_options: Dict[str, Any] = None,
                              use_semantic_search: bool = False,
+                             top: int = 10,
                              semantic_config_name: str = "default-semantic-config") -> List[Dict[str, Any]]:
         """
         Perform a hybrid search combining traditional keyword search with vector search.
@@ -404,7 +546,7 @@ class SearchIndex:
         default_options = {
             "search_text": query_text,  # Traditional keyword search
             "vector_queries": [vectorized_query],  # Vector search component
-            "top": 10,
+            "top": top,
             "select": "*",
             "include_total_count": True,
         }
@@ -440,14 +582,15 @@ def get_embedding_client( api_key: str, api_base: str, api_version: str) :
     client = AzureOpenAI(
         api_key=api_key,  # Set this as an environment variable
         api_version=api_version,           # Using a recent API version
-        azure_endpoint=api_base  # e.g. "https://your-resource.openai.azure.com/"
+        azure_endpoint=api_base,  # e.g. "https://your-resource.openai.azure.com/"
     )
     return client
 
 @retry(wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(6))
 def generate_embeddings(text: str, openai_client, model: str = "text-embedding-3-small" ) -> List[float]:
     try : 
-        response = openai_client.embeddings.create( model=model, input=text )
+        model_deployed = model
+        response = openai_client.embeddings.create( input=[text],model="text-embedding-3-small" )
         return response.data[0].embedding
     except Exception as e:
         print(f"Error: {str(e)}")
@@ -483,6 +626,7 @@ if __name__ == "__main__":
 
 
     query = "Ποιές είναι οι διαφορές στη διαδικασία έκδοσης χρεωστικών και πιστωτικών καρτών;"
+    # query = "Ποιές είναι τα καταναλωτικά προιοντα που δίνει η Τράπεζα;"
     openai_client = get_embedding_client(azure_openai_api_key, api_base=azure_openai_endpoint, api_version=azure_api_version )
     query_embedding = generate_embeddings(query, openai_client, model=azure_embedding_model)
 
@@ -492,10 +636,10 @@ if __name__ == "__main__":
 
     storage_account = resource_group.get_storage_account(storage_account_name)
 
-    create_result = resource_group.create_storage_account(storage_account_name + "a1", location)
+    # create_result = resource_group.create_storage_account(storage_account_name + "a1", location)
     
     print("Getting or creating search service...")
-    search_service_name = "athenamar2025"
+    search_service_name = "athenaindexes"
     search_service = subscription.get_search_service(search_service_name)
     if search_service is None:
         print(f"Creating search service '{search_service_name}'...")
@@ -503,15 +647,25 @@ if __name__ == "__main__":
 
     index =  search_service.get_index(index_name)
     
-    semantic_config_name = "athena-vector-mar2025-semantic-configuration"
+    semantic_config_name = "athena-index-full-semantic-configuration"
     if index is not None:
         result = index.perform_hybrid_search(query_text=query, 
-                                        query_vector=query_embedding, 
-                                        vector_fields="text_vector", 
-                                        use_semantic_search=True,
-                                        semantic_config_name=semantic_config_name)
+                                    query_vector=query_embedding, 
+                                    vector_fields="text_vector", 
+                                    use_semantic_search=True,
+                                    semantic_config_name=semantic_config_name) 
         
-
+        
+    if index is not None:
+        result = index.search_with_context_window(
+            query_text=query,
+            query_vector=query_embedding,
+            vector_fields="text_vector",
+            use_semantic_search=True,
+            semantic_config_name=semantic_config_name,
+            window_size=3,  # 3 chunks before and after
+            top=5,
+        )
     print(f"Search service endpoint: {search_service.get_service_endpoint()}")
     
     # Define vector search configuration
