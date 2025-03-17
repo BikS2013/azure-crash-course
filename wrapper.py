@@ -230,10 +230,10 @@ class SearchService:
         return indexes
 
     def get_index(self, index_name: str) -> "SearchIndex":
-        indexes = self.get_indexes()
-        for index in indexes:
-            if index.name == index_name:
-                return SearchIndex(self, index.name, index.fields, index.vector_search)
+        index_client = self.get_index_client()
+        index = index_client.get_index(index_name)
+        if index and index.name == index_name:
+            return SearchIndex(self, index.name, index.fields, index.vector_search)
         return None
       
     def create_or_update_index(self, index_name: str, fields: List[azsdim.SearchField])->"SearchIndex":
@@ -291,6 +291,45 @@ class SearchService:
         result = self.get_index_client().create_or_update_index(index)
         return result
 
+        """
+        Extend an Azure AI Search index schema with new fields
+        
+        Args:
+            search_service_name: Name of your search service
+            admin_key: Admin API key for your search service
+            index_name: Name of the index to extend
+            new_fields: List of new field definitions to add
+        """
+
+        try:
+            index_client = self.get_index_client()
+            index = index_client.get_index(index_name)
+            print(f"Successfully retrieved existing index '{index_name}'")
+            
+            # Create a list of existing field names for comparison
+            existing_field_names = [field.name for field in index.fields]
+            
+            # Filter out any fields that already exist in the index
+            fields_to_add = [field for field in new_fields if field.name not in existing_field_names]
+            
+            if not fields_to_add:
+                print("No new fields to add - all specified fields already exist in the index")
+                return index
+                
+            # Add new fields to the existing fields
+            index.fields.extend(fields_to_add)
+            
+            # Update the index
+            result = index_client.create_or_update_index(index)
+            print(f"Successfully extended index '{index_name}' with {len(fields_to_add)} new fields")
+            
+            # Return the updated index
+            return result
+            
+        except Exception as e:
+            print(f"Error extending index: {str(e)}")
+            raise
+
 def get_std_vector_search( connections_per_node:int = 4, 
                           neighbors_list_size: int = 400, 
                           search_list_size: int = 500, 
@@ -344,6 +383,40 @@ class SearchIndex:
         index_definition = azsdim.SearchIndex(name=self.index_name, fields=fields)
         self.azure_index = self.search_service.get_index_client().create_or_update_index(index_definition)
 
+    def extend_index_schema( self, new_fields: List[azsdim.SearchField] ) -> bool | None :
+        """
+        Extend an Azure AI Search index schema with new fields
+        
+        Args:
+            new_fields: List of new field definitions to add
+            Indicative fields:
+            azsdim.SimpleField(name="category", type=SearchFieldDataType.String, filterable=True, facetable=True),
+            azsdim.SimpleField(name="publication_date", type=SearchFieldDataType.DateTimeOffset, filterable=True, sortable=True),
+            azsdim.SearchableField(name="summary", type=SearchFieldDataType.String, analyzer_name="en.microsoft")
+        """
+
+        try:
+            existing_field_names = [field.name for field in self.azure_index.fields]
+            
+            # Filter out any fields that already exist in the index
+            fields_to_add = [field for field in new_fields if field.name not in existing_field_names]
+            
+            if not fields_to_add:
+                print("No new fields to add - all specified fields already exist in the index")
+                return index
+                
+            self.azure_index.fields.extend(fields_to_add)
+            
+            index_client: azsdi.SearchIndexClient = self.search_service().get_index_client()
+            result : bool | None = index_client.create_or_update_index(self.azure_index)
+            print(f"Successfully extended index '{self.index_name}' with {len(fields_to_add)} new fields")
+            
+            # Return the updated index
+            return result
+            
+        except Exception as e:
+            print(f"Error extending index: {str(e)}")
+            raise
 
     def get_search_client(self, index_name: Optional[str] = None) -> azsd.SearchClient:
 
