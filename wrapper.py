@@ -1,8 +1,10 @@
-from collections import defaultdict
-from typing import Any, List, Dict, Optional, Union
 import os
 from dotenv import load_dotenv
 load_dotenv()
+
+from collections import defaultdict
+from time import time 
+from typing import Any, Callable, List, Dict, Optional, Tuple, Union
 
 from azure.identity import ClientSecretCredential
 from azure.mgmt.resource import SubscriptionClient, ResourceManagementClient
@@ -137,7 +139,7 @@ class ResourceGroup:
         search_service = operation.result()
         return SearchService(self, search_service)
     
-    def get_storage_account(self, account_name: str) -> azstm.StorageAccount:
+    def get_storage_account(self, account_name: str) -> "StorageAccount":
         storage_client = self.subscription.get_storage_management_client()
         try:
             account = storage_client.storage_accounts.get_properties(resource_group_name = self.azure_resource_group.name, 
@@ -145,7 +147,10 @@ class ResourceGroup:
         except Exception as e:
             print(f"Error at ResourceGroup.get_storage_account(): {str(e)}")
             account = None
-        return account    
+        if account is not None:
+            return StorageAccount(self, account)
+        else:
+            return None
 
     def create_storage_account(self, account_name: str, location: str) -> azstm.StorageAccount:
         storage_client = self.subscription.get_storage_management_client()
@@ -159,7 +164,7 @@ class ResourceGroup:
                                                               parameters=params)
         return result.result()
 
-from azure.storage.blob import BlobServiceClient
+from azure.storage.blob import BlobServiceClient, ContainerProperties, ContainerClient, BlobProperties
 class StorageAccount: 
     storage_account: azstm.StorageAccount
     resource_group: ResourceGroup
@@ -185,7 +190,34 @@ class StorageAccount:
     def get_container_client(self, container_name: str):
         client = self.get_blob_service_client()
         container_client = client.get_container_client(container_name)
-        
+
+    def get_containers(self) -> list[ContainerProperties]:
+        client = self.get_blob_service_client()
+        containers = client.list_containers()
+        return [container for container in containers]
+
+    def get_container(self, container_name:str) -> "Container":
+        client = self.get_blob_service_client()
+        container = client.get_container_client(container_name)
+        return Container(self, container)
+
+class Container:
+    container_client: ContainerClient
+    storage_account: StorageAccount
+
+    def __init__(self, storage_account: StorageAccount, container_client: ContainerClient):
+        self.storage_account = storage_account
+        self.container_client = container_client
+
+    def get_blob_names(self) -> list[str]:
+        blobs = self.container_client.list_blob_names()
+        return [blob for blob in blobs]
+    
+    def get_blobs(self) -> list[BlobProperties]:
+        blobs = self.container_client.list_blobs()
+        return [blob for blob in blobs]
+
+
 import azure.search.documents.indexes as azsdi
 import azure.search.documents.indexes.models as azsdim
 from azure.core.credentials import AzureKeyCredential
@@ -303,8 +335,8 @@ class SearchService:
 
         try:
             index_client = self.get_index_client()
-            index = index_client.get_index(index_name)
-            print(f"Successfully retrieved existing index '{index_name}'")
+            index = index_client.get_index(AZURE_INDEX_NAME)
+            print(f"Successfully retrieved existing index '{AZURE_INDEX_NAME}'")
             
             # Create a list of existing field names for comparison
             existing_field_names = [field.name for field in index.fields]
@@ -321,7 +353,7 @@ class SearchService:
             
             # Update the index
             result = index_client.create_or_update_index(index)
-            print(f"Successfully extended index '{index_name}' with {len(fields_to_add)} new fields")
+            print(f"Successfully extended index '{AZURE_INDEX_NAME}' with {len(fields_to_add)} new fields")
             
             # Return the updated index
             return result
@@ -383,6 +415,18 @@ class SearchIndex:
         index_definition = azsdim.SearchIndex(name=self.index_name, fields=fields)
         self.azure_index = self.search_service.get_index_client().create_or_update_index(index_definition)
 
+    def get_search_client(self, index_name: Optional[str] = None ) -> azsd.SearchClient:
+        if not index_name:
+            index_name = self.index_name
+        search_client = self.search_service.search_client            
+        if search_client is None or search_client.index_name != index_name:
+            search_client = azsd.SearchClient(
+                endpoint=self.search_service.get_service_endpoint(),
+                index_name=index_name,
+                credential=self.search_service.get_credential()
+            )
+        return search_client  
+
     def extend_index_schema( self, new_fields: List[azsdim.SearchField] ) -> bool | None :
         """
         Extend an Azure AI Search index schema with new fields
@@ -403,11 +447,11 @@ class SearchIndex:
             
             if not fields_to_add:
                 print("No new fields to add - all specified fields already exist in the index")
-                return index
+                return True
                 
             self.azure_index.fields.extend(fields_to_add)
             
-            index_client: azsdi.SearchIndexClient = self.search_service().get_index_client()
+            index_client: azsdi.SearchIndexClient = self.search_service.get_index_client()
             result : bool | None = index_client.create_or_update_index(self.azure_index)
             print(f"Successfully extended index '{self.index_name}' with {len(fields_to_add)} new fields")
             
@@ -418,17 +462,155 @@ class SearchIndex:
             print(f"Error extending index: {str(e)}")
             raise
 
-    def get_search_client(self, index_name: Optional[str] = None) -> azsd.SearchClient:
+    def process_data_in_batches( self, 
+                                index_name: str,
+                                transaction: Callable[[List[Dict[str, Any]]], int],
+                                search_text: str = "*",
+                                batch_size: int = 100 ) -> Tuple[int, int]:
+        '''
+        Process data in batches from an Azure AI Search index
 
-        search_client = self.search_service.search_client            
-        if search_client is None or search_client.index_name != self.index_name:
-            search_client = azsd.SearchClient(
-                endpoint=self.search_service.get_service_endpoint(),
-                index_name=self.index_name,
-                credential=self.search_service.get_credential()
+        Args:
+            index_name: Name of the index to process. If None, the current index is used. 
+            transaction: Function to process a batch of documents. Gets a list of documents and returns the number of successful transactions. The transaction function could upload documents to the same or another index.
+            batch_size: Number of documents to process in each batch
+        
+        Returns:
+            Tuple of (succeeded_count, document_count)
+
+        '''
+        if index_name is None:
+            index_name = self.index_name
+        search_client = self.get_search_client(index_name)
+        skip = 0
+        document_count = 0
+        succeeded_count = 0 
+        
+        while True:
+            results = search_client.search( search_text=search_text, include_total_count=True, skip=skip, top=batch_size )
+            
+            # Get the total document count
+            if document_count == 0:
+                document_count = results.get_count()
+                print(f"Retrieved {document_count} documents to process")
+            
+            documents_to_process = []
+            batch_documents = list(results)
+            if not batch_documents:
+                break  # No more documents to process
+            
+            for doc in batch_documents:
+                documents_to_process.append(doc)
+            
+            # Upload the batch to the target index
+            if documents_to_process:
+                transaction_result = transaction(documents_to_process)
+                
+                succeeded_count += transaction_result
+                print(f"Processed batch: {transaction_result}/{len(documents_to_process)} documents (offset: {skip})")
+            
+            # Move to the next batch
+            skip += batch_size
+            
+            # Check if we've processed all documents
+            if skip >= document_count:
+                break
+        print(f"Successfully processed {succeeded_count}/{document_count} documents from  index '{index_name}'")
+        return (succeeded_count, document_count)
+
+    def copy_index_data( self, source_index_name: str, target_index_name: str, fields_to_copy:List[str], batch_size:int=100) -> Tuple[int, int]:
+        """
+        Copy data from source index to target index, excluding the removed fields
+        
+        Args:
+            source_index_name: Name of the source index. if None the current index is used
+            target_index_name: Name of the target index. if None the current index is used
+            fields_to_copy: List of field names to copy from source to target. If None, all fields are copied.
+            batch_size: Number of documents to process in each batch
+        Returns:
+            Tuple of (succeeded_count, document_count)
+        """
+        if not source_index_name:
+            source_index_name = self.index_name
+        if not target_index_name:
+            target_index_name = self.index_name
+        if source_index_name == target_index_name:
+            print("Source and target index names are the same. No action taken.")
+            return (0, 0)
+        
+        target_client = self.get_search_client(target_index_name)
+        
+        def copy_and_upload_documents(documents: List[Dict[str, Any]]) -> int:
+            documents_to_upload = []
+            for doc in documents:
+                # Create a new document with the selected fields
+                new_doc = {key: value for key, value in doc.items() if not fields_to_copy or (key in fields_to_copy) }
+                documents_to_upload.append(new_doc)            
+            # Upload the batch to the target index
+            if documents_to_upload:
+                result = target_client.upload_documents(documents=documents_to_upload)
+                
+                succeeded = sum(1 for r in result if r.succeeded)
+
+            return succeeded
+
+        result = self.process_data_in_batches(index_name = source_index_name, transaction=copy_and_upload_documents)
+        return result
+
+    def copy_index_structure( self, fields_to_copy:List[str]=None, new_index_name=None ) -> azsdim.SearchIndex:
+        """
+        Make a copy of an Azure AI Search index with a subset of fields.
+        
+        Args:
+            fields_to_remove: List of field names to copy/replicate. if None, all fields are copied.
+            new_index_name: Name for the new index (defaults to original_index_name + "_new")
+        
+        Returns:
+            str: Name of the new index
+        """
+
+        try:
+            original_index = self.azure_index
+            if not new_index_name:
+                new_index_name = f"{self.index_name}_new"
+
+            new_fields = [field for field in original_index.fields if not fields_to_copy or field.name in fields_to_copy]
+            
+            if len(new_fields) == 0:
+                print(f"None of the specified fields exist in index '{self.index_name}'")
+                return self.index_name
+            
+            # Create a new index definition
+            if hasattr(original_index, "semantic_settings"):
+                semantic_settings = original_index.semantic_settings
+            else:
+                semantic_settings = None
+                
+            new_index = azsdim.SearchIndex(
+                name=new_index_name,
+                fields=new_fields,
+                # Copy other index properties that might be important
+                scoring_profiles=original_index.scoring_profiles,
+                default_scoring_profile=original_index.default_scoring_profile,
+                cors_options=original_index.cors_options,
+                suggesters=original_index.suggesters,
+                analyzers=original_index.analyzers,
+                tokenizers=original_index.tokenizers,
+                token_filters=original_index.token_filters,
+                char_filters=original_index.char_filters,
+                semantic_settings=semantic_settings,
+                vector_search=original_index.vector_search
             )
-        return search_client
-    
+            
+            # Create the new index
+            result = self.search_service.get_index_client().create_or_update_index(new_index)
+            
+            return result
+            
+        except Exception as e:
+            print(f"Error copying index structure: {str(e)}")
+            raise
+
     def perform_search(self, fields_to_select:str="*", highlight_fields:str="chunk", filter_expression:str=None, top:int=10,
                        query_text:str=None, search_options:Dict[str, Any]=None) -> azsd.SearchItemPaged[Dict]:
         search_options = {
@@ -647,8 +829,7 @@ class SearchIndex:
             processed_result = dict(result)
             processed_results.append(processed_result)
         
-        return processed_results
-    
+        return processed_results    
 
 from openai import AzureOpenAI
 def get_embedding_client( api_key: str, api_base: str, api_version: str) : 
@@ -669,38 +850,157 @@ def generate_embeddings(text: str, openai_client, model: str = "text-embedding-3
         print(f"Error: {str(e)}")
         raise e 
     
-if __name__ == "__main__":
-    import os
-    from dotenv import load_dotenv
-    load_dotenv()
-    tenant_id = os.getenv("AZURE_TENANT_ID")
-    subscription_id = os.getenv("AZURE_SUBSCRIPTION_ID")
-    client_id = os.getenv("AZURE_CLIENT_ID")
-    client_secret = os.getenv("AZURE_CLIENT_SECRET")
+###############################
+# Tests / Sample Use Cases 
+###############################
+from config import(
+    AZURE_TENANT_ID,
+    AZURE_CLIENT_ID,
+    AZURE_CLIENT_SECRET,
+    AZURE_SUBSCRIPTION_ID,
+    AZURE_RESOURCE_GROUP,
+    AZURE_STORAGE_ACCOUNT_NAME,
+    AZURE_STORAGE_CONTAINER_NAME,
+
+    AZURE_SEARCH_SERVICE_NAME,
+    AZURE_INDEX_NAME,
+
+    AZURE_OPENAI_KEY,
+    AZURE_OPENAI_ENDPOINT,
+    AZURE_OPENAI_API_VERSION,
+)
+
+def get_index(): 
+    identity = Identity(AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET)
+    subscription = identity.get_subscription(subscription_id=AZURE_SUBSCRIPTION_ID)
+    resource_group = subscription.get_resource_group(AZURE_RESOURCE_GROUP)
+    search_service = subscription.get_search_service(AZURE_SEARCH_SERVICE_NAME)
+    index =  search_service.get_index(AZURE_INDEX_NAME)
+    return index
+
+def update_index_schema():
+    index = get_index()
+    index.extend_index_schema([
+        azsdim.SimpleField(name="readable_url", type=azsdim.SearchFieldDataType.String, filterable=True, facetable=True),
+        azsdim.SimpleField(name="category", type=azsdim.SearchFieldDataType.String, filterable=True, facetable=True),
+        #azsdim.SimpleField(name="publication_date", type=azsdim.SearchFieldDataType.DateTimeOffset, filterable=True, sortable=True),
+        #azsdim.SearchableField(name="summary", type=azsdim.SearchFieldDataType.String, analyzer_name="el.lucene")
+    ])
+    return index
+
+def update_fields():
+    index = get_index()
+    update_client = index.get_search_client()
+
+    import urllib.parse
+
+    def update_recs(recs: List[Dict[str, Any]]) -> int:
+        for rec in recs:
+            parsed = urllib.parse.unquote(rec["url"])
+            rec["readable_url"] = parsed
+            #rec["extension"] = rec["metadata_storage_file_extension"]
+            #rec["content_type"] = rec["metadata_content_type"]
+
+        result = update_client.upload_documents(documents=recs)
+        succeeded = sum(1 for r in result if r.succeeded)
+        return succeeded
+
+    result = index.process_data_in_batches(index_name=None, transaction=update_recs, batch_size=100)
+    return result
+
+copy_index_name = AZURE_INDEX_NAME + "_2"
+
+def get_index_copy(): 
+    identity = Identity(AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET)
+    subscription = identity.get_subscription(subscription_id=AZURE_SUBSCRIPTION_ID)
+    search_service = subscription.get_search_service(AZURE_SEARCH_SERVICE_NAME)
+    index =  search_service.get_index(copy_index_name)
+    return index
+
+fields_to_copy = [
+    "chunk_id",
+    "parent_id",
+    "chunk",
+    "title",
+    "text_vector",
+    "url",
+    "name",
+    "readable_url",
+    "extension",
+    "content_type",
+    "category",
+]
+
+def copy_index_structure():
+    index = get_index()
+    new_index = index.copy_index_structure(fields_to_copy=fields_to_copy, new_index_name=copy_index_name) 
+def copy_index_data():
+    index = get_index()
+    result = index.copy_index_data(source_index_name=None, target_index_name=copy_index_name, fields_to_copy=fields_to_copy)
+    return result
+
+def copy_index():
+    index = get_index()
+    new_index_name = index.copy_index_structure(fields_to_copy=fields_to_copy, new_index_name=copy_index_name) 
+    result = index.copy_index_data(source_index_name=None, target_index_name=copy_index_name, fields_to_copy=fields_to_copy)
+
+def get_storage_account():
+    identity = Identity(AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET)
+    subscription = identity.get_subscription(subscription_id=AZURE_SUBSCRIPTION_ID)
+    resource_group = subscription.get_resource_group(AZURE_RESOURCE_GROUP)
+    storage_account = resource_group.get_storage_account(AZURE_STORAGE_ACCOUNT_NAME)
+    return storage_account
+
+def get_containers():
+    storage_account = get_storage_account()
+    containers = storage_account.get_containers()
+    return containers
+
+def get_container():
+    storage_account = get_storage_account()
+    container = storage_account.get_container(AZURE_STORAGE_CONTAINER_NAME)
+    return container
+
+def get_blob_names():
+    container = get_container()
+    blob_names = container.get_blob_names()
+    return blob_names    
     
-    group_name = os.getenv("AZURE_RESOURCE_GROUP_NAME")
+if __name__ == "__main__":
+    get_blob_names()
+
+    exit()    
+    copy_index_structure()
+    copy_index_data()
+    update_index_schema()
+    update_fields()
+    copy_index()
+    get_containers()
+    
+    import os
+
     storage_account_name = os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
     location = os.getenv("AZURE_RESOURCE_LOCATION")
-    index_name = os.getenv("AZURE_INDEX_NAME")
     
     # For OpenAI API (you would need to add these to your .env file)
     openai_api_key = os.getenv("OPENAI_API_KEY")
-    azure_openai_api_key = os.getenv("AZURE_OPENAI_API_KEY")
-    azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     azure_api_version = os.getenv("AZURE_API_VERSION")
     azure_openai_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
     azure_embedding_model = os.getenv("AZURE_EMBEDDING_MODEL")
 
-    identity = Identity(tenant_id, client_id, client_secret)
-    subscription = identity.get_subscription(subscription_id=subscription_id)
-    resource_group = subscription.get_resource_group(group_name)
 
     
+    exit()
+
+
+
+
+    exit()
 
 
     query = "Ποιές είναι οι διαφορές στη διαδικασία έκδοσης χρεωστικών και πιστωτικών καρτών;"
     # query = "Ποιές είναι τα καταναλωτικά προιοντα που δίνει η Τράπεζα;"
-    openai_client = get_embedding_client(azure_openai_api_key, api_base=azure_openai_endpoint, api_version=azure_api_version )
+    openai_client = get_embedding_client(AZURE_OPENAI_KEY, api_base=AZURE_OPENAI_ENDPOINT, api_version=azure_api_version )
     query_embedding = generate_embeddings(query, openai_client, model=azure_embedding_model)
 
 
@@ -712,13 +1012,13 @@ if __name__ == "__main__":
     # create_result = resource_group.create_storage_account(storage_account_name + "a1", location)
     
     print("Getting or creating search service...")
-    search_service_name = "athenaindexes"
-    search_service = subscription.get_search_service(search_service_name)
+    AZURE_SEARCH_SERVICE_NAME = "athenaindexes"
+    search_service = subscription.get_search_service(AZURE_SEARCH_SERVICE_NAME)
     if search_service is None:
-        print(f"Creating search service '{search_service_name}'...")
-        search_service = resource_group.create_search_service(search_service_name, location)
+        print(f"Creating search service '{AZURE_SEARCH_SERVICE_NAME}'...")
+        search_service = resource_group.create_search_service(AZURE_SEARCH_SERVICE_NAME, location)
 
-    index =  search_service.get_index(index_name)
+    index =  search_service.get_index(AZURE_INDEX_NAME)
     
     semantic_config_name = "athena-index-full-semantic-configuration"
     if index is not None:
@@ -757,16 +1057,16 @@ if __name__ == "__main__":
     ]
     
     # Create the index with vector search configuration
-    print(f"Creating or updating index '{index_name}'...")
+    print(f"Creating or updating index '{AZURE_INDEX_NAME}'...")
     index = azsdim.SearchIndex(
-        name=index_name,
+        name=AZURE_INDEX_NAME,
         fields=fields,
         vector_search=vector_search
     )
     
     try:
         result = search_service.get_index_client().create_or_update_index(index)
-        print(f"Index '{index_name}' created or updated successfully.")
+        print(f"Index '{AZURE_INDEX_NAME}' created or updated successfully.")
         
         # Add semantic configuration
         print("Adding semantic configuration...")
@@ -803,11 +1103,11 @@ if __name__ == "__main__":
                         print(f"   ...{highlight}...")
             
             print(f"\nFound {len(results)} documents")
-        elif azure_openai_api_key and azure_openai_endpoint and azure_openai_deployment:
+        elif AZURE_OPENAI_KEY and AZURE_OPENAI_ENDPOINT and azure_openai_deployment:
             print("\nSetting up Azure OpenAI client...")
             search_service.setup_openai_client(
-                api_key=azure_openai_api_key,
-                api_base=azure_openai_endpoint,
+                api_key=AZURE_OPENAI_KEY,
+                api_base=AZURE_OPENAI_ENDPOINT,
                 api_version="2023-05-15"
             )
             

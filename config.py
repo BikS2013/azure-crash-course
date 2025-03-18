@@ -9,6 +9,7 @@ AZURE_RESOURCE_GROUP=os.getenv("AZURE_RESOURCE_GROUP_NAME")
 
 
 AZURE_STORAGE_ACCOUNT_NAME=os.getenv("AZURE_STORAGE_ACCOUNT_NAME") #blob storage account name
+AZURE_STORAGE_CONTAINER_NAME=os.getenv("AZURE_STORAGE_CONTAINER_NAME") #blob storage container_name
 AZURE_SEARCH_SERVICE_NAME=os.getenv("AZURE_SEARCH_SERVICE_NAME") #AI search service name
 AZURE_INDEX_NAME=os.getenv("AZURE_INDEX_NAME") #index name in azure AI search service
 AZURE_INDEX_SEMANTIC_CONFIGURATION=os.getenv("AZURE_INDEX_SEMANTIC_CONFIGURATION") #semantic configuration name in azure AI search service
@@ -17,8 +18,6 @@ AZURE_SEARCH_ENDPOINT = os.getenv("AZURE_SEARCH_ENDPOINT")
 AZURE_SEARCH_KEY = os.getenv("AZURE_SEARCH_KEY")
 AZURE_SEARCH_INDEX_NAME = os.getenv("AZURE_INDEX_NAME")
 AZURE_SEARCH_API_VERSION = os.getenv("AZURE_SEARCH_API_VERSION")
-
-
 
 
 # Azure OpenAI Configuration

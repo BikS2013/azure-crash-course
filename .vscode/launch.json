@@ -8,7 +8,7 @@
             "name": "Python Debugger: Search Manager",
             "type": "debugpy",
             "request": "launch",
-            "module": "search_manager"
+            "module": "wrapper"
         },
         {
             "name": "Python Debugger: Current File",
