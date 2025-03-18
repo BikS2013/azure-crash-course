@@ -850,9 +850,9 @@ def generate_embeddings(text: str, openai_client, model: str = "text-embedding-3
         print(f"Error: {str(e)}")
         raise e 
     
-###############################
+##########################################################################################################################################################################
 # Tests / Sample Use Cases 
-###############################
+##########################################################################################################################################################################
 from config import(
     AZURE_TENANT_ID,
     AZURE_CLIENT_ID,
@@ -977,11 +977,9 @@ if __name__ == "__main__":
     copy_index()
     get_containers()
     
-    import os
 
-    storage_account_name = os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
-    location = os.getenv("AZURE_RESOURCE_LOCATION")
-    
+
+    exit()
     # For OpenAI API (you would need to add these to your .env file)
     openai_api_key = os.getenv("OPENAI_API_KEY")
     azure_api_version = os.getenv("AZURE_API_VERSION")
@@ -990,7 +988,6 @@ if __name__ == "__main__":
 
 
     
-    exit()
 
 
 
