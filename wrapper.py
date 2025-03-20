@@ -1600,7 +1600,7 @@ if __name__ == "__main__":
         print(f"- Created: {details.get('created_at', 'N/A')}")
         print(f"- Last Modified: {details.get('last_modified', 'N/A')}")
     
-    # Test 3: Direct OpenAI API client only (no management capabilities)
+    # Test 2: Direct OpenAI API client only (no management capabilities)
     print("\n=== Testing Direct OpenAI API Client (No Management) ===")
     
     print("\nCreating AIService with only OpenAI API credentials (no resource management):")
