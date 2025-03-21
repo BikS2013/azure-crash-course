@@ -229,6 +229,21 @@ wheels = [
 ]
 
 [[package]]
+name = "azure-mgmt-cognitiveservices"
+version = "13.6.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "azure-common" },
+    { name = "azure-mgmt-core" },
+    { name = "isodate" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6f/a4/4d5c014adfa05707669fc0aa29aca02eff37131c114e51c850db61d8fa35/azure_mgmt_cognitiveservices-13.6.0.tar.gz", hash = "sha256:612e56f79e824f81d590cff0c09253358ada065d5a6169c13905fc35064d9b40", size = 130495 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c3/72/29f7a91181abe6e5dc2169ab5c7332157b41709666db33dbd2b1030aaa29/azure_mgmt_cognitiveservices-13.6.0-py3-none-any.whl", hash = "sha256:76394783fc3d3279cb42b4bc167ed984fab0dcb4cd83673f907b006ba9577cab", size = 213256 },
+]
+
+[[package]]
 name = "azure-mgmt-core"
 version = "1.5.0"
 source = { registry = "https://pypi.org/simple" }
@@ -391,6 +406,7 @@ dependencies = [
     { name = "azure-ai-projects" },
     { name = "azure-ai-resources" },
     { name = "azure-identity" },
+    { name = "azure-mgmt-cognitiveservices" },
     { name = "azure-mgmt-resource" },
     { name = "azure-mgmt-search" },
     { name = "azure-mgmt-storage" },
@@ -409,6 +425,7 @@ requires-dist = [
     { name = "azure-ai-projects", specifier = ">=1.0.0b7" },
     { name = "azure-ai-resources", specifier = ">=1.0.0b9" },
     { name = "azure-identity", specifier = ">=1.21.0" },
+    { name = "azure-mgmt-cognitiveservices", specifier = ">=13.6.0" },
     { name = "azure-mgmt-resource", specifier = ">=22.0.0" },
     { name = "azure-mgmt-search", specifier = ">=9.1.0" },
     { name = "azure-mgmt-storage", specifier = ">=22.1.1" },

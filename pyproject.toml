@@ -8,6 +8,7 @@ dependencies = [
     "azure-ai-projects>=1.0.0b7",
     "azure-ai-resources>=1.0.0b9",
     "azure-identity>=1.21.0",
+    "azure-mgmt-cognitiveservices>=13.6.0",
     "azure-mgmt-resource>=22.0.0",
     "azure-mgmt-search>=9.1.0",
     "azure-mgmt-storage>=22.1.1",
