@@ -45,7 +45,9 @@ class Identity:
             if sub.subscription_id == subscription_id:
                 return Subscription(self, sub, sub.subscription_id)
         return None
-        
+
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+
 class Subscription:
 
     identity: Identity
@@ -101,8 +103,17 @@ class Subscription:
     def get_storage_accounts(self) -> list[azstm.StorageAccount]:
         accounts = list(self.storage_client.storage_accounts.list())
         return accounts
+    
+    def get_cognitive_client(self) -> CognitiveServicesManagementClient: 
+        cognitive_client: CognitiveServicesManagementClient 
+        cognitive_client = CognitiveServicesManagementClient(
+            credential=self.identity.get_credential(), 
+            subscription_id=self.subscription_id
+        )
+        return cognitive_client
                 
 import azure.mgmt.resource.resources.models as azrm
+import azure.mgmt.cognitiveservices.models as azcsm
 class ResourceGroup:
     azure_resource_group: azrm.ResourceGroup
     subscription: Subscription
@@ -164,6 +175,20 @@ class ResourceGroup:
                                                               parameters=params)
         return result.result()
 
+    def get_ai_service(self, service_name:str) -> "AIService":
+        cognitive_client = self.subscription.get_cognitive_client()
+        cognitive_accounts = cognitive_client.accounts.list_by_resource_group(self.azure_resource_group.name)
+
+        accounts = [account for account in cognitive_accounts]
+        openai_services_names = [ account.name for account in  accounts]
+
+        for account in accounts :
+            if account.kind.lower() == "openai" and account.name.lower() == service_name.lower() :
+                return AIService(self, cognitive_client=cognitive_client, azure_Account=account)
+        return None
+    
+
+        
 from azure.storage.blob import BlobServiceClient, ContainerProperties, ContainerClient, BlobProperties
 class StorageAccount: 
     storage_account: azstm.StorageAccount
@@ -200,7 +225,6 @@ class StorageAccount:
         client = self.get_blob_service_client()
         container = client.get_container_client(container_name)
         return Container(self, container)
-
 class Container:
     container_client: ContainerClient
     storage_account: StorageAccount
@@ -216,7 +240,6 @@ class Container:
     def get_blobs(self) -> list[BlobProperties]:
         blobs = self.container_client.list_blobs()
         return [blob for blob in blobs]
-
 
 import azure.search.documents.indexes as azsdi
 import azure.search.documents.indexes.models as azsdim
@@ -793,364 +816,124 @@ class SearchIndex:
         return processed_results    
 
 from openai import AzureOpenAI
-from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
 
 class AIService:
-    """
-    A class for interacting with Azure AI services, including OpenAI models and embeddings.
-    Provides methods for model management, deployment, and inference.
-    """
-    credential: ClientSecretCredential  
-    subscription_id: str
+    cognitive_client: CognitiveServicesManagementClient
+    azure_account: azcsm.Account
     resource_group: ResourceGroup
-    resource_name: str
-    openai_client: AzureOpenAI
-    cog_client: CognitiveServicesManagementClient
-    api_version: str
-    api_key: str
-    api_base: str
+    
     
     def __init__(self, 
-                 resource_group: Optional[ResourceGroup] = None,
-                 resource_name: Optional[str] = None,
-                 api_key: Optional[str] = None,
-                 api_base: Optional[str] = None,
-                 api_version: str = "2023-05-15",
-                 credential: Optional[ClientSecretCredential] = None,
-                 subscription_id: Optional[str] = None):
-        """
-        Initialize the AIService with authentication details.
-        
-        This service can be initialized in two ways:
-        1. Using a ResourceGroup object and resource_name for management operations
-        2. Using direct API credentials (api_key and api_base) for inference operations
-        
-        If resource_group and resource_name are provided but api_key and api_base are not,
-        the service will attempt to retrieve these automatically.
-        
-        Args:
-            resource_group: ResourceGroup object for management operations
-            resource_name: Name of the Azure OpenAI resource
-            api_key: API key for Azure OpenAI direct API access
-            api_base: Base URL for Azure OpenAI service (e.g. https://myresource.openai.azure.com/)
-            api_version: API version for Azure OpenAI
-            credential: Optional ClientSecretCredential (if not using resource_group)
-            subscription_id: Optional subscription ID (if not using resource_group)
-        """
-        self.api_version = api_version
-        self.api_key = api_key
-        self.api_base = api_base
-        self.resource_name = resource_name
+                 resource_group: ResourceGroup,
+                 cognitive_client: CognitiveServicesManagementClient,
+                 azure_Account: azcsm.Account):
         self.resource_group = resource_group
-        self.openai_client = None
-        self.cog_client = None
-        
-        # Set up management credentials either from resource_group or direct parameters
-        if resource_group:
-            self.subscription_id = resource_group.subscription.subscription_id
-            self.credential = resource_group.subscription.identity.get_credential()
-            
-            # Initialize cognitive services management client for resource management
-            self.cog_client = CognitiveServicesManagementClient(
-                credential=self.credential,
-                subscription_id=self.subscription_id
-            )
-            
-            # If api_key or api_base are not provided, try to retrieve them from the resource
-            if resource_name and (not api_key or not api_base):
-                self._retrieve_api_credentials()
-                
-        elif credential and subscription_id:
-            self.credential = credential
-            self.subscription_id = subscription_id
-            
-            # Initialize cognitive services management client with direct credentials
-            self.cog_client = CognitiveServicesManagementClient(
-                credential=self.credential,
-                subscription_id=self.subscription_id
-            )
-            
-            # If api_key or api_base are not provided, try to retrieve them from the resource
-            if resource_name and (not api_key or not api_base):
-                self._retrieve_api_credentials()
-        
-        # Initialize OpenAI client if api_key and api_base are available
-        if self.api_key and self.api_base:
-            self.init_openai_client(self.api_key, self.api_base, api_version)
-            
-    def _retrieve_api_credentials(self):
-        """
-        Retrieve API key and endpoint URL from the Azure OpenAI resource.
-        This function attempts to get these credentials using the CognitiveServicesManagementClient.
-        """
-        try:
-            if not self.cog_client or not self.resource_name or not self.resource_group:
-                print("Cannot retrieve API credentials: Missing required parameters")
-                return
-                
-            resource_group_name = self.resource_group.get_name() if hasattr(self.resource_group, 'get_name') else None
-            if not resource_group_name:
-                print("Error: Unable to get resource group name")
-                return
-                
-            # Get the account properties
-            account = self.cog_client.accounts.get(
-                resource_group_name=resource_group_name,
-                account_name=self.resource_name
-            )
-            
-            # Set the endpoint URL if not already provided
-            if not self.api_base:
-                # The endpoint format is usually https://{resource_name}.openai.azure.com/
-                self.api_base = f"https://{self.resource_name}.openai.azure.com/"
-                print(f"Retrieved API endpoint: {self.api_base}")
-                
-            # Get API keys if not already provided
-            if not self.api_key:
-                keys = self.cog_client.accounts.list_keys(
-                    resource_group_name=resource_group_name,
-                    account_name=self.resource_name
-                )
-                self.api_key = keys.key1
-                print(f"Retrieved API key for {self.resource_name}")
-                
-        except Exception as e:
-            print(f"Error retrieving API credentials: {str(e)}")
-            # Don't raise the exception - just log it and continue
-    
-    def init_openai_client(self, api_key: str, api_base: str, api_version: str = None) -> AzureOpenAI:
-        """
-        Initialize or update the OpenAI client.
-        
-        Args:
-            api_key: API key for Azure OpenAI
-            api_base: Base URL for Azure OpenAI service
-            api_version: API version for Azure OpenAI (optional)
-            
-        Returns:
-            The initialized OpenAI client
-        """
-        if api_version is None:
-            api_version = self.api_version
-            
-        self.api_key = api_key
-        self.api_base = api_base
-        self.api_version = api_version
-        
-        self.openai_client = AzureOpenAI(
-            api_key=api_key,
+        self.cognitive_client = cognitive_client
+        self.azure_account = azure_Account
+
+    def get_OpenAIClient(self, api_version:str) -> "OpenAIClient" :
+        keys = self.cognitive_client.accounts.list_keys(self.resource_group.get_name(), self.azure_account.name)
+        openai_client = AzureOpenAI(
+            api_key=keys.key1,
             api_version=api_version,
-            azure_endpoint=api_base,
+            azure_endpoint= f"https://{self.azure_account.name}.openai.azure.com/",
         )
-        return self.openai_client
-    
-    def list_deployments(self) -> List[Dict]:
-        """
-        List all model deployments in the Azure OpenAI service.
-        
-        Returns:
-            List of deployment information dictionaries
-        """
-        try:
-            # Check if we have the necessary objects and properties
-            if not self.cog_client:
-                print("Error: Cognitive Services client is not initialized")
-                return []
-                
-            if not self.resource_name:
-                print("Error: resource_name is not provided")
-                return []
-                
-            if not self.resource_group:
-                print("Error: resource_group is not provided")
-                return []
-                
-            resource_group_name = self.resource_group.get_name() if hasattr(self.resource_group, 'get_name') else None
-            if not resource_group_name:
-                print("Error: Unable to get resource group name")
-                return []
-                
-            # The correct method name is 'list' instead of 'list_by_account'
-            deployments = list(self.cog_client.deployments.list(
-                resource_group_name=resource_group_name,
-                account_name=self.resource_name
-            ))
-            
-            result = []
-            for deployment in deployments:
-                # Handle missing properties safely
-                deployment_info = {
-                    "name": deployment.name if hasattr(deployment, 'name') else "unknown",
-                    "status": "unknown"
-                }
-                
-                # Add properties only if they exist
-                if hasattr(deployment, 'properties'):
-                    props = deployment.properties
-                    
-                    if hasattr(props, 'model'):
-                        deployment_info["model"] = props.model
-                    
-                    if hasattr(props, 'provisioning_state'):
-                        deployment_info["status"] = props.provisioning_state
-                    
-                    # Handle scale settings if they exist
-                    if hasattr(props, 'scale_settings') and props.scale_settings is not None:
-                        scale_settings = {}
-                        
-                        if hasattr(props.scale_settings, 'scale_type'):
-                            scale_settings["scale_type"] = props.scale_settings.scale_type
-                        
-                        if hasattr(props.scale_settings, 'capacity'):
-                            scale_settings["capacity"] = props.scale_settings.capacity
-                        
-                        deployment_info["scale_settings"] = scale_settings
-                
-                result.append(deployment_info)
-                
-            return result
-        except Exception as e:
-            print(f"Error listing deployments: {str(e)}")
-            return []
-            
-    def list_available_models(self) -> List[Dict]:
-        """
-        List available models through OpenAI client.
-        
-        Returns:
-            List of available models information via the API
-        """
-        try:
-            # First try using the Cognitive Services API to get deployed models
-            # Only if we have all the necessary components
-            if self.cog_client and self.resource_name and self.resource_group:
-                deployments = self.list_deployments()
-                if deployments:
-                    return [{"id": d["name"], "model": d["model"]} for d in deployments]
-            
-            # Use OpenAI API if we have a client
-            if self.openai_client:
-                models = self.openai_client.models.list()
-                model_list = []
-                for model in models.data:
-                    model_list.append({
-                        "id": model.id,
-                        "created": model.created,
-                        "owned_by": model.owned_by
-                    })
-                return model_list
-                
-            # If we don't have enough information for either approach
-            if not self.openai_client and (not self.cog_client or not self.resource_name or not self.resource_group):
-                print("Error: Neither OpenAI client nor sufficient resource information is available")
-                
-            return []
-        except Exception as e:
-            print(f"Error listing models: {str(e)}")
-            return []
-    
-    def get_model_details(self, model_id: str) -> Dict:
+        return OpenAIClient(self, openai_client) 
+
+    def get_models(self, azure_location: str = None) -> List[azcsm.Model]:
+        if (azure_location is None): 
+            azure_location = self.resource_group.azure_resource_group.location
+        models_list = self.cognitive_client.models.list(azure_location)
+        models = [model for model in models_list]
+        return models 
+
+    @staticmethod
+    def get_model_details(model: azcsm.Model) -> Dict:
         """
         Get details for a specific model.
         
         Args:
-            model_id: The ID of the model
+            model_id: The model to be processed
             
         Returns:
             Dictionary with model details
         """
         try:
-            model = self.openai_client.models.retrieve(model_id)
-            return {
-                "id": model.id,
-                "created": model.created,
-                "owned_by": model.owned_by
+            info =  {
+                "kind": model.kind,
+                "name": model.model.name,
+                "format": model.model.format,
+                "version": model.model.version,
+                "sju_name": model.sku_name,
             }
+            return info
         except Exception as e:
-            print(f"Error getting model '{model_id}': {str(e)}")
+            print(f"Error getting model '{model.model.name}': {str(e)}")
             return {}
+
+    def get_deployments(self) -> List[azcsm.Deployment]:
+        try:
+            deployments = list(self.cognitive_client.deployments.list(self.resource_group.get_name(), self.azure_account.name))
             
-    def get_deployment_details(self, deployment_name: str) -> Dict:
+            result = [ deployment for deployment in deployments ]
+            return result
+        except Exception as e:
+            print(f"Error listing deployments: {str(e)}")
+            return []
+        
+    def get_deployment(self, deployment_name:str) -> azcsm.Deployment : 
+            deployment = self.cognitive_client.deployments.get( resource_group_name=self.resource_group.get_name(), account_name=self.azure_account.name, deployment_name=deployment_name )        
+            return deployment
+
+    @staticmethod        
+    def get_deployment_details(deployment: azcsm.Deployment) -> Dict:
         """
         Get details for a specific deployment.
         
         Args:
-            deployment_name: The name of the deployment
+            deployment: The deployment
             
         Returns:
             Dictionary with deployment details
         """
         try:
-            # Check if we have the necessary objects and properties
-            if not self.cog_client:
-                print("Error: Cognitive Services client is not initialized")
-                return {}
-                
-            if not self.resource_name:
-                print("Error: resource_name is not provided")
-                return {}
-                
-            if not self.resource_group:
-                print("Error: resource_group is not provided")
-                return {}
-                
-            resource_group_name = self.resource_group.get_name() if hasattr(self.resource_group, 'get_name') else None
-            if not resource_group_name:
-                print("Error: Unable to get resource group name")
-                return {}
-            
-            deployment = self.cog_client.deployments.get(
-                resource_group_name=resource_group_name,
-                account_name=self.resource_name,
-                deployment_name=deployment_name
-            )
-            
             # Handle missing properties safely
             deployment_info = {
-                "name": deployment.name if hasattr(deployment, 'name') else deployment_name,
+                "name": deployment.name if hasattr(deployment, 'name') else "name not found",
                 "status": "unknown"
             }
-            
             # Add properties only if they exist
             if hasattr(deployment, 'properties'):
                 props = deployment.properties
-                
                 if hasattr(props, 'model'):
                     deployment_info["model"] = props.model
-                
                 if hasattr(props, 'provisioning_state'):
                     deployment_info["status"] = props.provisioning_state
-                
                 # Handle scale settings if they exist
                 if hasattr(props, 'scale_settings') and props.scale_settings is not None:
                     scale_settings = {}
-                    
                     if hasattr(props.scale_settings, 'scale_type'):
                         scale_settings["scale_type"] = props.scale_settings.scale_type
-                    
                     if hasattr(props.scale_settings, 'capacity'):
                         scale_settings["capacity"] = props.scale_settings.capacity
-                    
                     deployment_info["scale_settings"] = scale_settings
-                
                 # Add timestamps if they exist
                 if hasattr(props, 'created_at'):
                     deployment_info["created_at"] = props.created_at
-                    
                 if hasattr(props, 'last_modified'):
                     deployment_info["last_modified"] = props.last_modified
-            
             return deployment_info
             
         except Exception as e:
-            print(f"Error getting deployment '{deployment_name}': {str(e)}")
+            print(f"Error getting deployment '{deployment.name}': {str(e)}")
             return {}
-            
+
     def create_deployment(self, 
                          deployment_name: str, 
-                         model: str, 
-                         capacity: int = 1, 
-                         scale_type: str = "Standard") -> Dict:
+                         model_name: str, 
+                         model_version:str = None,
+                         sku_name: str = "Standard",
+                         capacity: int = 1) -> azcsm.Deployment:
         """
         Create a new model deployment in Azure OpenAI.
         
@@ -1161,68 +944,46 @@ class AIService:
             scale_type: Scaling type (Standard, Manual)
             
         Returns:
-            Dictionary with deployment details
+            the Deployment when prepared
         """
+
         try:
-            # Check if we have the necessary objects and properties
-            if not self.cog_client:
-                print("Error: Cognitive Services client is not initialized")
-                return {"error": "Cognitive Services client is not initialized"}
-                
-            if not self.resource_name:
-                print("Error: resource_name is not provided")
-                return {"error": "resource_name is not provided"}
-                
-            if not self.resource_group:
-                print("Error: resource_group is not provided")
-                return {"error": "resource_group is not provided"}
-                
-            resource_group_name = self.resource_group.get_name() if hasattr(self.resource_group, 'get_name') else None
-            if not resource_group_name:
-                print("Error: Unable to get resource group name")
-                return {"error": "Unable to get resource group name"}
+            if model_version:
+                model = azcsm.Model(name=model_name, version=model_version)
+            else:
+                model = azcsm.Model(name=model_name)
+
+            deployment_properties = azcsm.DeploymentProperties(model=model)
             
-            # Import needed models
-            from azure.mgmt.cognitiveservices.models import (
-                DeploymentProperties, 
-                ScaleSettings,
-                DeploymentRaiPolicies
-            )
-            
-            # Define deployment properties
-            properties = DeploymentProperties(
-                model=model,
-                scale_settings=ScaleSettings(
-                    scale_type=scale_type,
-                    capacity=capacity
-                ),
-                rai_policy_name="Microsoft.Default"
-            )
-            
-            # Start deployment creation
-            poller = self.cog_client.deployments.begin_create_or_update(
-                resource_group_name=resource_group_name,
-                account_name=self.resource_name,
+            # Create SKU configuration
+            sku = azcsm.Sku(name=sku_name, capacity=capacity)
+
+            # properties = azcsm.DeploymentProperties(
+
+            #     model=model,
+            #     scale_settings=azcsm.DeploymentScaleSettings(
+            #         scale_type=scale_type,
+            #         capacity=capacity
+            #     ),
+            #     rai_policy_name="Microsoft.Default"
+            # )
+            poller = self.cognitive_client.deployments.begin_create_or_update(
+                resource_group_name=self.resource_group.get_name(),
+                account_name=self.azure_account.name,
                 deployment_name=deployment_name,
-                deployment=properties
-            )
-            
-            # Wait for the operation to complete
-            deployment = poller.result()
-            
-            return {
-                "name": deployment.name,
-                "model": deployment.properties.model,
-                "status": deployment.properties.provisioning_state,
-                "scale_settings": {
-                    "scale_type": deployment.properties.scale_settings.scale_type,
-                    "capacity": deployment.properties.scale_settings.capacity
+                deployment=None, 
+                parameteres = { 
+                    "properties": deployment_properties,
+                    "sku": sku
                 }
-            }
+            )
+            deployment: azcsm.Deployment = poller.result()
+            return deployment
+            
         except Exception as e:
             print(f"Error creating deployment '{deployment_name}': {str(e)}")
             return {"error": str(e)}
-            
+
     def delete_deployment(self, deployment_name: str) -> bool:
         """
         Delete a model deployment in Azure OpenAI.
@@ -1234,44 +995,26 @@ class AIService:
             Boolean indicating success or failure
         """
         try:
-            # Check if we have the necessary objects and properties
-            if not self.cog_client:
-                print("Error: Cognitive Services client is not initialized")
-                return False
-                
-            if not self.resource_name:
-                print("Error: resource_name is not provided")
-                return False
-                
-            if not self.resource_group:
-                print("Error: resource_group is not provided")
-                return False
-                
-            resource_group_name = self.resource_group.get_name() if hasattr(self.resource_group, 'get_name') else None
-            if not resource_group_name:
-                print("Error: Unable to get resource group name")
-                return False
-                
             # Start the delete operation
-            poller = self.cog_client.deployments.begin_delete(
-                resource_group_name=resource_group_name,
-                account_name=self.resource_name,
+            poller = self.cognitive_client.deployments.begin_delete(
+                resource_group_name=self.resource_group.get_name(),
+                account_name=self.azure_account.name,
                 deployment_name=deployment_name
             )
             
             # Wait for the operation to complete
             result = poller.result()
-            
+
             print(f"Successfully deleted deployment '{deployment_name}'")
             return True
         except Exception as e:
             print(f"Error deleting deployment '{deployment_name}': {str(e)}")
             return False
-            
+
     def update_deployment(self, 
                          deployment_name: str, 
-                         capacity: int = None, 
-                         scale_type: str = None) -> Dict:
+                         sku_name: str = "Standard",
+                         capacity: int = 1) -> azcsm.Deployment:
         """
         Update an existing model deployment in Azure OpenAI.
         
@@ -1284,76 +1027,40 @@ class AIService:
             Dictionary with deployment details
         """
         try:
-            # Check if we have the necessary objects and properties
-            if not self.cog_client:
-                print("Error: Cognitive Services client is not initialized")
-                return {"error": "Cognitive Services client is not initialized"}
-                
-            if not self.resource_name:
-                print("Error: resource_name is not provided")
-                return {"error": "resource_name is not provided"}
-                
-            if not self.resource_group:
-                print("Error: resource_group is not provided")
-                return {"error": "resource_group is not provided"}
-                
-            resource_group_name = self.resource_group.get_name() if hasattr(self.resource_group, 'get_name') else None
-            if not resource_group_name:
-                print("Error: Unable to get resource group name")
-                return {"error": "Unable to get resource group name"}
-                
-            # Import needed models
-            from azure.mgmt.cognitiveservices.models import (
-                DeploymentUpdateParameters, 
-                ScaleSettings
-            )
-            
-            # Get current deployment to preserve existing settings
-            current = self.cog_client.deployments.get(
-                resource_group_name=resource_group_name,
-                account_name=self.resource_name,
-                deployment_name=deployment_name
-            )
-            
-            # Use existing values if new ones aren't provided
-            if capacity is None:
-                capacity = current.properties.scale_settings.capacity
-                
-            if scale_type is None:
-                scale_type = current.properties.scale_settings.scale_type
-            
-            # Define update parameters
-            update_params = DeploymentUpdateParameters(
-                scale_settings=ScaleSettings(
-                    scale_type=scale_type,
-                    capacity=capacity
-                )
-            )
-            
-            # Start the update operation
-            poller = self.cog_client.deployments.begin_update(
-                resource_group_name=self.resource_group.get_name(),
-                account_name=self.resource_name,
-                deployment_name=deployment_name,
-                deployment=update_params
-            )
-            
-            # Wait for the operation to complete
+            deployment = self.get_deployment(deployment_name)
+
+            model_props = deployment.properties.model
+            model = azcsm.Model(
+                # If the model is stored as a complex object, preserve its name/version
+                name=model_props.name if hasattr(model_props, 'name') else model_props,
+                version=model_props.version if hasattr(model_props, 'version') else None
+            )            
+            updated_sku = azcsm.Sku(name=sku_name, capacity=capacity)
+
+            deployment_properties = azcsm.DeploymentProperties(model=model)
+
+            poller = self.cognitive_client.deployments.begin_create_or_update(
+                self.resource_group.get_name(),
+                self.azure_account.name,
+                deployment_name,
+                parameters={
+                    "properties": deployment_properties,
+                    "sku": updated_sku
+                }
+            )            
             deployment = poller.result()
-            
-            return {
-                "name": deployment.name,
-                "model": deployment.properties.model,
-                "status": deployment.properties.provisioning_state,
-                "scale_settings": {
-                    "scale_type": deployment.properties.scale_settings.scale_type,
-                    "capacity": deployment.properties.scale_settings.capacity
-                },
-                "updated_at": deployment.properties.last_modified
-            }
+            return deployment
         except Exception as e:
             print(f"Error updating deployment '{deployment_name}': {str(e)}")
             return {"error": str(e)}
+
+class OpenAIClient:
+    ai_service: AIService 
+    openai_client: AzureOpenAI
+
+    def __init__(self, ai_service: AIService, openai_client: AzureOpenAI):
+        self.ai_service = ai_service
+        self.openai_client = openai_client
     
     @retry(wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(6))
     def generate_embeddings(self, text: str, model: str = "text-embedding-3-small") -> List[float]:
@@ -1411,23 +1118,7 @@ class AIService:
             print(f"Error generating chat completion: {str(e)}")
             return {"error": str(e)}
 
-def get_embedding_client(api_key: str, api_base: str, api_version: str) : 
-    client = AzureOpenAI(
-        api_key=api_key,  # Set this as an environment variable
-        api_version=api_version,           # Using a recent API version
-        azure_endpoint=api_base,  # e.g. "https://your-resource.openai.azure.com/"
-    )
-    return client
 
-@retry(wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(6))
-def generate_embeddings(text: str, openai_client, model: str = "text-embedding-3-small" ) -> List[float]:
-    try : 
-        model_deployed = model
-        response = openai_client.embeddings.create( input=[text],model="text-embedding-3-small" )
-        return response.data[0].embedding
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        raise e 
     
 ##########################################################################################################################################################################
 # Tests / Sample Use Cases 
@@ -1444,10 +1135,34 @@ from config import(
     AZURE_SEARCH_SERVICE_NAME,
     AZURE_INDEX_NAME,
 
+    AZURE_OPENAI_SERVICE_NAME,
     AZURE_OPENAI_KEY,
     AZURE_OPENAI_ENDPOINT,
     AZURE_OPENAI_API_VERSION,
 )
+def get_cognitive_sevices(): 
+    identity = Identity(AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET)
+    subscription = identity.get_subscription(subscription_id=AZURE_SUBSCRIPTION_ID)
+    cognitive_services = subscription.get_cognitive_client()
+    resource_group = subscription.get_resource_group(AZURE_RESOURCE_GROUP)
+    aiservice = resource_group.get_ai_service(AZURE_OPENAI_SERVICE_NAME)
+
+    openaiclient = aiservice.get_OpenAIClient(AZURE_OPENAI_API_VERSION)
+    embeddings = openaiclient.generate_embeddings("Hello, how are you?")
+    
+    models = aiservice.get_models()
+    model_details = [ AIService.get_model_details(model) for model in models ]  
+
+    deployments = aiservice.get_deployments() 
+    deployment_details = [ AIService.get_deployment_details(deployment) for deployment in deployments ]
+
+    # to be fixed 
+    #aiservice.update_deployment("test-deployment", capacity=12)  
+    #aiservice.delete_deployment("test-deployment")
+    #deployment = aiservice.create_deployment( "test-deployment", "gpt-4o")
+
+    return cognitive_services
+
 
 def get_index(): 
     identity = Identity(AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET)
@@ -1562,6 +1277,9 @@ if __name__ == "__main__":
         AZURE_OPENAI_CHAT_MODEL
     )
     
+    get_cognitive_sevices()
+    exit() 
+
     # Test 1: Management operations with resource group
     print("\n=== Testing Management Operations ===")
     
