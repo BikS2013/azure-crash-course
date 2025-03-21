@@ -186,7 +186,6 @@ class ResourceGroup:
             if account.kind.lower() == "openai" and account.name.lower() == service_name.lower() :
                 return AIService(self, cognitive_client=cognitive_client, azure_Account=account)
         return None
-    
 
         
 from azure.storage.blob import BlobServiceClient, ContainerProperties, ContainerClient, BlobProperties
@@ -244,7 +243,6 @@ class Container:
 import azure.search.documents.indexes as azsdi
 import azure.search.documents.indexes.models as azsdim
 from azure.core.credentials import AzureKeyCredential
-
 class SearchService:
     search_service: azsrm.SearchService
     resource_group: ResourceGroup
@@ -816,7 +814,6 @@ class SearchIndex:
         return processed_results    
 
 from openai import AzureOpenAI
-
 class AIService:
     cognitive_client: CognitiveServicesManagementClient
     azure_account: azcsm.Account
@@ -1117,8 +1114,6 @@ class OpenAIClient:
         except Exception as e:
             print(f"Error generating chat completion: {str(e)}")
             return {"error": str(e)}
-
-
     
 ##########################################################################################################################################################################
 # Tests / Sample Use Cases 
